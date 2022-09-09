@@ -1,0 +1,155 @@
+.header {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: 
+//   linear-gradient(
+//       to right,
+//       rgba(0, 0, 0, 0.56),
+//       rgba(0, 0, 0, 0.56)
+//     ),
+    url('../images/abstract-background-with-red-lines.jpg');
+}
+.header__wrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  margin-top: 40px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo__icon {
+  display: inline-block;
+}
+
+.logo__text {
+  color: #fff;
+  font-size: 30px;
+}
+
+.nav {
+  display: flex;
+  margin-top: 40px;
+}
+.nav__list {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-right: 20px;
+  margin-right: 40px;
+}
+
+.nav__item {
+  font-size: 12px;
+  color: #fff;
+}
+
+.nav__item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.nav__btn-wrapper {
+  height: 30px;
+}
+
+.nav__item-button {
+  min-width: 56px;
+  padding: 5px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.nav__item-button:first-child {
+  margin-bottom: 5px;
+}
+
+.nav__item-button:focus {
+  background-color: #ab8d7852;
+}
+
+.nav__item-button:hover,
+.nav__item-button:focus {
+  color: #fff;
+}
+
+.nav__item.active {
+  position: relative;
+}
+.nav__item.active::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ff001b;
+}
+
+.nav__link {
+  opacity: 1;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #fff;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.input {
+  margin-top: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__input {
+  height: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid #ffffff;
+  padding: 0 0 4px 1px;
+  outline: none;
+  width: 394px;
+}
+
+.header__input::placeholder {
+  //   color:var(--);
+}
+
+.header__container {
+  height: 216px;
+}
+
+.input__search-icon {
+  margin-left: -13px;
+}
+.input__error {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.17;
+  margin-top: 20px;
+  color: #ff001b;
+  display: flex;
+  justify-content: center;
+}
+
+.nav__item-log-out {
+  background-color: #fff;
+  padding: 8px 5px 6px;
+  min-width: 56px;
+}
