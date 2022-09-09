@@ -1,0 +1,241 @@
+.movie-modal__backdrop {
+  overflow: auto;
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transition: opacity $transition, visibility $transition;
+
+  @include mobile {
+    background-color: rgb(255, 255, 255, 0.1);
+  }
+}
+
+// .franchise-backdrop.is-hidden .franchise-modal {
+//   @media screen and (min-width: 480px) {
+//     transform: translate(-50%, -50%) scale(0) rotate(360deg);
+//   }
+// }
+
+.movie-modal {
+  width: 280px;
+  height: 940px;
+  background-color: #fff;
+  padding: 48px 20px 40px;
+  font-family: Roboto, sans-serif;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%);
+  // overflow: auto;
+
+  @include tablet {
+    display: flex;
+    width: 704px;
+    height: 552px;
+    padding: 39px 71px 38px 36px;
+  }
+
+  @include desktop-modal {
+    width: 806px;
+    height: 558px;
+    padding: 40px 12px 40px 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.modal__btn-close {
+  width: 30px;
+  height: 30px;
+  background-color: $main-bgcolor;
+  border: 0px;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  display: flex;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.modal__icon-close {
+  fill: currentColor;
+  transition: fill $transition;
+  width: 100%;
+  height: 100%;
+
+  .modal__btn-close:hover &,
+  .modal__btn-clos:focus & {
+    fill: $secondary-bg-color;
+    cursor: pointer;
+  }
+}
+
+// .is-hidden {
+//   opacity: 0;
+//   pointer-events: none;
+//   visibility: hidden;
+// }
+
+.movie-modal__img {
+  margin-bottom: 20px;
+
+  @include tablet {
+    margin-right: 68px;
+  }
+
+  @include desktop-modal {
+    margin-right: 16px;
+  }
+}
+
+.movie-modal__poster {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 240px;
+  height: 357px;
+  border-radius: 5px;
+
+  @include tablet {
+    width: 264px;
+    height: 373.55px;
+  }
+
+  @include desktop-modal {
+    width: 375px;
+    height: 478px;
+  }
+}
+
+.modal__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  color: $first-text-color;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  @include desktop-modal {
+    font-size: 30px;
+    line-height: 1.17;
+  }
+}
+
+.modal-film__table {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: $first-text-color;
+  margin-bottom: 20px;
+}
+
+.modal-film__table-row {
+  display: inline-flex;
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+.modal-film__table-description {
+  display: block;
+  color: $trird-text-color;
+  width: 71px;
+  margin-right: 39px;
+
+  @include desktop-modal {
+    margin-right: 83px;
+  }
+}
+
+.modal-film__table-vote {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.17;
+  border-radius: 5px;
+  width: 36px;
+  height: 16px;
+  color: $secondary-text-color;
+  background-color: $secondary-bg-color;
+}
+
+.modal-film__table-slash {
+  color: $trird-text-color;
+}
+
+.modal-film__table-votes,
+.popularity-value {
+  line-height: 1.17;
+}
+
+.modal-film__about {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
+.modal-film__abot-text {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+}
+
+.modal-btn {
+  width: 110px;
+  height: 44px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+
+  @include tablet {
+    width: 125px;
+  }
+}
+
+.movie-modal__container-btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include desktop-modal {
+    justify-content: center;
+  }
+}
+
+.modal-film_btn-watched {
+  padding: 6px 27px;
+  background: $secondary-bg-color;
+  color: $secondary-text-color;
+  border: 0px;
+
+  @include tablet {
+    padding: 0;
+  }
+
+  @include desktop-modal {
+    margin-right: 15px;
+  }
+}
+
+.modal-film_btn-queue {
+  background-color: $main-bgcolor;
+  // padding: 12px;
+  color: $first-text-color;
+  border: 1px solid $first-border-color;
+}
