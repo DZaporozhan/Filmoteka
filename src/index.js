@@ -1,1 +1,1 @@
-import './js/app'
+import './js/userAuth/app'

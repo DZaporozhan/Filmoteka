@@ -1,4 +1,4 @@
-import { authWithEmailAndPassword } from "./auth"
+import { authWithEmailAndPassword } from "../userAuth/auth"
 
 
 const modal = document.querySelector('.form_auth_block')
