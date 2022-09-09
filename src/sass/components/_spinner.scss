@@ -1,0 +1,101 @@
+.backdrop {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.circle {
+  background-color: #ff6b08;
+  border-radius: 50%;
+}
+
+.triangles {
+  height: 25vmin;
+  width: 25vmin;
+  perspective: 15px;
+  animation: triangle-depth $duration $ease infinite;
+  opacity: 0.8;
+}
+
+.triangle {
+  --z: 0px;
+  --size: 14%;
+
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  mix-blend-mode: screen;
+  transform: translateZ(var(--z)) rotate(0turn);
+  animation: triangle-spin $duration $ease infinite;
+
+  &.-other {
+    --size: 7%;
+    transform: translateZ(var(--z)) rotate(60deg) rotate(0turn);
+    animation-name: other-triangle-spin;
+  }
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background: $main-bgcolor; //white
+  top: calc(50% - var(--size) / 2);
+  left: calc(50% - var(--size) / 2);
+  width: var(--size);
+  height: var(--size);
+
+  transform-style: preserve-3d;
+
+  opacity: 0.8;
+  --z: 45px;
+
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}) {
+      transform: rotate(#{calc($i / 3)}turn)
+        translateX(200%)
+        translateZ(var(--z));
+    }
+  }
+}
+
+.-big {
+  --z: 6px;
+  .dot {
+    background: $first-text-color; //black
+  }
+}
+
+.-bigger {
+  --z: 3px;
+  .dot {
+    background: $line-color; //red
+    z-index: 75;
+  }
+}
+
+@keyframes triangle-depth {
+  0%,
+  100% {
+    perspective: 14px;
+    transform: scale(0.8);
+  }
+  50% {
+    perspective: 70px;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes triangle-spin {
+  100% {
+    transform: translateZ(var(--z)) rotate(1turn);
+  }
+}
+
+@keyframes other-triangle-spin {
+  100% {
+    transform: translateZ(var(--z)) rotate(60deg) rotate(1turn);
+  }
+}
