@@ -1,0 +1,69 @@
+.movieList {
+    display: flex;
+    flex-wrap: wrap;
+
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    @include tablet {
+        margin-left: -32px;
+        margin-top: -32px;
+        margin-bottom: 0;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    
+    @include desktop {
+        margin-left: -16px;
+    }
+}
+
+.movieCard {
+    @include tablet {
+        width: calc((100% - 2 * 32px) / 2);
+        margin-left: 32px;
+        margin-top: 32px;
+        margin-bottom: 0;
+    }
+
+    @include desktop {
+        width: calc((100% - 3 * 16px) / 3);
+        margin-left: 16px;
+    }
+}
+
+.movieCard:not(:last-child) {
+    @media screen and (max-width: 767px) {
+        margin-bottom: 20px;
+    }
+}
+
+.movieCard__title {
+    @include font(12px, 500, 14px, 0.04em);
+    margin-top: 10px;
+
+    @include tablet {
+            @include font(12px, 500, 16px, 0.04em);
+            margin-top: 8px;
+        }
+
+    @include desktop { 
+        @include font(20px, 500, 24px, 0.04em);
+        margin-top: 12px;
+    }
+   
+}
+
+.movieCard__info {
+    @include font(12px, 500, 14px, 0.04em);
+    color: $sixth-text-color;
+    
+    @include tablet {
+        @include font(12px, 500, 16px, 0.04em);
+    }
+    
+    @include desktop {
+        @include font(20px, 500, 24px, 0.04em);
+    }
+    
+}
