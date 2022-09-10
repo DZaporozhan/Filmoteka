@@ -3,8 +3,7 @@
     <div class="header__wrapper">
       <a class="logo" href="./index.html">
         <svg class="logo__icon" width="24px" height="24px">
-          <!-- <use href="./film.svg"></use> -->
-          <!-- тут іконка в спрайті -->
+          <use href="./images/symbol-defs.svg#icon-film"></use>
         </svg>
         <span class="logo__text">Filmoteka</span>
       </a>
@@ -20,7 +19,7 @@
       </nav>
     </div>
     <div class="input">
-      <form class="input__wraper form" id="search-form">
+      <form class="input__wraper form">
         <input
           class="header__input"
           name="searchQuery"
@@ -30,10 +29,11 @@
         />
         <button class="input__search-btn" type="submit">
           <svg class="input__search-icon" width="12px" height="12px">
-            <!-- <use href="./sprite...??"></use> -->
+            <use href="./images/symbol-defs.svg#icon-search-2"></use>
           </svg>
         </button>
       </form>
     </div>
+    <p class="input__error" id="js-input-error"></p>
   </div>
 </header>
