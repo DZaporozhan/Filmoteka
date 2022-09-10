@@ -1,4 +1,4 @@
-.movie-modal__backdrop {
+.modal-film__backdrop {
   overflow: auto;
   z-index: 200;
   position: fixed;
@@ -14,13 +14,7 @@
   }
 }
 
-// .franchise-backdrop.is-hidden .franchise-modal {
-//   @media screen and (min-width: 480px) {
-//     transform: translate(-50%, -50%) scale(0) rotate(360deg);
-//   }
-// }
-
-.movie-modal {
+.modal-film {
   width: 280px;
   height: 940px;
   background-color: #fff;
@@ -30,7 +24,6 @@
   top: 0%;
   left: 50%;
   transform: translate(-50%);
-  // overflow: auto;
 
   @include tablet {
     display: flex;
@@ -76,13 +69,7 @@
   }
 }
 
-// .is-hidden {
-//   opacity: 0;
-//   pointer-events: none;
-//   visibility: hidden;
-// }
-
-.movie-modal__img {
+.modal-film__img {
   margin-bottom: 20px;
 
   @include tablet {
@@ -94,7 +81,7 @@
   }
 }
 
-.movie-modal__poster {
+.modal-film__poster {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -113,7 +100,7 @@
   }
 }
 
-.modal__title {
+.modal-film__title {
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 500;
@@ -200,13 +187,16 @@
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
+  background-color: $main-bgcolor;
+  color: $first-text-color;
+  border: 1px solid $first-border-color;
 
   @include tablet {
     width: 125px;
   }
 }
 
-.movie-modal__container-btn {
+.modal-film__container-btn {
   display: flex;
   justify-content: space-between;
   margin: 0;
@@ -220,9 +210,8 @@
 
 .modal-film_btn-watched {
   padding: 6px 27px;
-  background: $secondary-bg-color;
-  color: $secondary-text-color;
-  border: 0px;
+  transition: border $transition, background-color $transition,
+    color $transition, transform $transition;
 
   @include tablet {
     padding: 0;
@@ -234,8 +223,16 @@
 }
 
 .modal-film_btn-queue {
-  background-color: $main-bgcolor;
-  // padding: 12px;
-  color: $first-text-color;
-  border: 1px solid $first-border-color;
+  transition: border $transition, background-color $transition,
+    color $transition, transform $transition;
+}
+
+.modal-film_btn-watched:hover,
+.modal-film_btn-watched:focus,
+.modal-film_btn-queue:hover,
+.modal-film_btn-queue:focus {
+  background-color: $secondary-bg-color;
+  color: $secondary-text-color;
+  border: 0px;
+  transform: scale(1.2);
 }
