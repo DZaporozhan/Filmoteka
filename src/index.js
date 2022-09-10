@@ -1,7 +1,9 @@
 import NewApiServise from './js/api-servise';
+import { createMovieCard } from './js/cardTemplates';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
+  mainList: document.querySelector('.movieList'),
 };
 
 refs.searchForm.addEventListener('submit', onSearch);
@@ -27,13 +29,30 @@ function onSearch(e) {
   SearchMovies();
 }
 
-function TrendingMovies() {
-  newsApiServise.getTrendingMovies().then(data => console.log(data));
+function trendingMovies() {
+  newsApiServise
+    .getTrendingMovies()
+    .then(data => {
+      const movieCard = createMovieCard(data.results);
+      return movieCard;
+    })
+    .then(data => {
+      refs.mainList.insertAdjacentHTML('beforeend', data);
+    });
 }
-TrendingMovies();
+trendingMovies();
 
 function SearchMovies() {
-  newsApiServise.getSearchMovies().then(data => console.log(data));
+  newsApiServise
+    .getSearchMovies()
+    .then(data => {
+      const movieCard = createMovieCard(data.results);
+      return movieCard;
+    })
+    .then(data => {
+      refs.mainList.innerHTML = '';
+      refs.mainList.insertAdjacentHTML('beforeend', data);
+    });
 }
 
 let movieID = '616037';
