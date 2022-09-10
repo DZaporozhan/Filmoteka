@@ -1,16 +1,34 @@
 import NewApiServise from './api-servise';
-import { getWatchedList } from './getWatchedList';
-import { getQueueList } from './getQueueList';
-
-const modalFilmInfoRef = document.querySelector('.modal-film');
+// import { getWatchedList } from './getWatchedList';
+// import { getQueueList } from './getQueueList';
+import { createMovieCard } from './cardTemplates';
 
 const noPosterImg =
   'https://freedesignfile.com/upload/2014/07/Movie-time-design-elements-vector-backgrounds-01.jpg';
 
-export async function renderModalFilmInfoMarkup(movie) {
-  const response = await getTrendingMovies();
-  const modalFilmInfoMarkup = createModalFilmInfoMarkup(movie);
-  modalFilmInfoRef.insertAdjacentHTML('beforeend', modalFilmInfoMarkup);
+const backdropRef = document.querySelector('.modal-film__backdrop');
+const body = document.querySelector('body');
+const movieModalRef = document.querySelector('.modal-film');
+
+const itemRef = document.querySelector('.movieCard');
+
+itemRef.addEventListener('click', onMovieCLick);
+
+async function onMovieCLick(event) {
+  event.preventDefault();
+  movieModalRef.innerHTML = '';
+  if (event.target.nodeName !== 'IMG' && event.target.nodeName !== 'P') {
+    return;
+  }
+  openModal();
+
+  const movieId = event.target.dataset.id;
+
+  const newsApiServise = await new NewApiServise(movieId);
+  const movieInfo = responce.data;
+  createModalFilmInfoMarkup(movieInfo);
+  document.addEventListener('keydown', onEscClose);
+  document.addEventListener('click', onClickClose);
 }
 
 function createModalFilmInfoMarkup({
@@ -22,23 +40,14 @@ function createModalFilmInfoMarkup({
   poster_path,
   overview,
   vote_count,
-  id,
 }) {
-  const movieGenres = genres.map(genre => {
-    return genre.name;
-  });
-  const queueList = getQueueList();
-  let btnWatched = 'add to watched';
-  let buttonQueue = 'add to queue';
-  buttonQueue = queueList.some(item => item[id])
-    ? 'remove queue'
-    : 'add to queue';
-  const watchedList = getWatchedList();
-
-  if (watchedList.some(item => item[id])) {
-    btnWatched = 'Remove watched';
-  }
-  return ` <div class="modal-film__img">
+  const genresList = genres.map(genre => genre.name).join(', ');
+  movieModalRef.innerHTML = `<button class="modal__btn-close">
+      <svg class="modal__icon-close" width="14" height="14">
+        <use href="/src/images/icon.svg#icon-close"></use>
+      </svg>
+    </button>
+  <div class="modal-film__img">
       <picture class="modal-film__poster">
       <source
           srcset="${poster_path} === null ? noPosterImg :
@@ -91,7 +100,7 @@ function createModalFilmInfoMarkup({
       </tr>
       <tr class="modal-film__table-row">
         <td class="modal-film__table-description">Genre</td>
-        <td class="modal-film__table-value">${movieGenres}</td>
+        <td class="modal-film__table-value">${genresList}</td>
       </tr>
     </table>
     <h3 class="modal-film__about">About</h3>
@@ -99,17 +108,43 @@ function createModalFilmInfoMarkup({
     </p>
     <ul class="modal-film__container-btn">
       <li>
-        <button class="modal-btn modal-film_btn-watched" type="submit">
-         ${btnWatched}
-        </button>
+        <button class="modal-btn modal-film_btn-watched" type="submit">add to watched</button>
       </li>
       <li>
-        <button class="modal-btn modal-film_btn-queue" type="submit">
-         ${buttonQueue}
-        </button>
+        <button class="modal-btn modal-film_btn-queue" type="submit">add to queue</button>
       </li>
     </ul>
     </div>
 </div>
 </div>`;
+}
+
+function onEscClose(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+}
+
+function onClickClose(event) {
+  if (
+    event.target === 'modal-film__backdrop' ||
+    event.target.id === 'modal__btn-close' ||
+    event.target.id === 'modal__icon-close'
+  ) {
+    closeModal();
+  }
+}
+
+function openModal() {
+  backdropRef.classList.remove('is-hidden');
+  movieModalRef.classList.remove('is-hidden');
+  body.classList.add('no-scroll');
+}
+
+function closeModal() {
+  backdropRef.classList.add('is-hidden');
+  movieModalRef.classList.add('is-hidden');
+  body.classList.remove('no-scroll');
+  document.removeEventListener('click', onClickClose);
+  document.removeEventListener('keydown', onEscClose);
 }
