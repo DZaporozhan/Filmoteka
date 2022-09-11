@@ -1,4 +1,6 @@
 import { genreList } from './retrieveGenreList';
+import NewApiServise from './api-servise';
+import refs from './refs';
 
 const basePosterUrl = 'https://image.tmdb.org/t/p/';
 const fileSize = `w500`;

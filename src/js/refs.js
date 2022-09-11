@@ -1,4 +1,4 @@
-export default refs = {
+const refs = {
   searchForm: document.querySelector('#search-form'),
   mainList: document.querySelector('.movieList'),
   warningOnSearch: document.querySelector('#js-input-error'),
@@ -9,3 +9,4 @@ export default refs = {
   backdropFilmRef: document.querySelector('.modal-film__backdrop'),
   body: document.querySelector('body'),
 };
+export default refs;

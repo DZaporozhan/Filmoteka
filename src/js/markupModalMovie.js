@@ -1,7 +1,6 @@
 import NewApiServise from './api-servise';
 import refs from './refs';
-// import { getWatchedList } from './getWatchedList';
-// import { getQueueList } from './getQueueList';
+
 import { createMovieCard } from './cardTemplates';
 
 const noPosterImg =
@@ -18,13 +17,12 @@ function moviesByID(movieID) {
 }
 
 function onMovieCLick(event) {
-  event.preventDefault();
   refs.modalFilmInfoRef.innerHTML = '';
-  isCard = event.target.closest('.movieCard');
+  const isCard = event.target.closest('.movieCard');
   if (!isCard) {
     return;
   }
-  movieId = isCard.getAttribute('data');
+  const movieId = isCard.getAttribute('data');
   console.log(movieId);
   openModal();
 
