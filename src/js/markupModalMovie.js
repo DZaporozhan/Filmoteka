@@ -1,4 +1,5 @@
 import NewApiServise from './api-servise';
+import { modalFilmInfoRef, backdropFilmRef, body, mainList } from './refs';
 // import { getWatchedList } from './getWatchedList';
 // import { getQueueList } from './getQueueList';
 import { createMovieCard } from './cardTemplates';
@@ -6,12 +7,12 @@ import { createMovieCard } from './cardTemplates';
 const noPosterImg =
   'https://freedesignfile.com/upload/2014/07/Movie-time-design-elements-vector-backgrounds-01.jpg';
 
-const backdropRef = document.querySelector('.modal-film__backdrop');
-const body = document.querySelector('body');
-const movieModalRef = document.querySelector('.modal-film');
-const galleryRef = document.querySelector('.movieList');
+// const backdropFilmRef = document.querySelector('.modal-film__backdrop');
+// const body = document.querySelector('body');
+// const modalFilmInfoRef = document.querySelector('.modal-film');
+// const galleryRef = document.querySelector('.movieList');
 
-galleryRef.addEventListener('click', onMovieCLick);
+mainList.addEventListener('click', onMovieCLick);
 
 const newsApiServise = new NewApiServise();
 
@@ -23,7 +24,7 @@ function moviesByID(movieID) {
 
 function onMovieCLick(event) {
   event.preventDefault();
-  movieModalRef.innerHTML = '';
+  modalFilmInfoRef.innerHTML = '';
   isCard = event.target.closest('.movieCard');
   if (!isCard) {
     return;
@@ -48,7 +49,7 @@ function createModalFilmInfoMarkup({
   vote_count,
 }) {
   const genresList = genres.map(genre => genre.name).join(', ');
-  movieModalRef.innerHTML = `<button class="modal__btn-close">
+  modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
       <svg class="modal__icon-close" width="14" height="14">
         <use href="/src/images/icon.svg#icon-close"></use>
       </svg>
@@ -142,14 +143,14 @@ function onClickClose(event) {
 }
 
 function openModal() {
-  backdropRef.classList.remove('is-hidden');
-  movieModalRef.classList.remove('is-hidden');
+  backdropFilmRef.classList.remove('is-hidden');
+  modalFilmInfoRef.classList.remove('is-hidden');
   body.classList.add('no-scroll');
 }
 
 function closeModal() {
-  backdropRef.classList.add('is-hidden');
-  movieModalRef.classList.add('is-hidden');
+  backdropFilmRef.classList.add('is-hidden');
+  modalFilmInfoRef.classList.add('is-hidden');
   body.classList.remove('no-scroll');
   document.removeEventListener('click', onClickClose);
   document.removeEventListener('keydown', onEscClose);
