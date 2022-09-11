@@ -44,8 +44,17 @@ function createModalFilmInfoMarkup({
 }) {
   const genresList = genres.map(genre => genre.name).join(', ');
   refs.modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
-      <svg class="modal__icon-close" width="14" height="14">
-        <use href="/src/images/icon.svg#icon-close"></use>
+     <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        fill="currentColor"
+        class="modal__icon-close"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+        />
       </svg>
     </button>
   <div class="modal-film__img">
@@ -128,9 +137,9 @@ function onEscClose(event) {
 
 function onClickClose(event) {
   if (
-    event.target === 'modal-film__backdrop' ||
-    event.target.id === 'modal__btn-close' ||
-    event.target.id === 'modal__icon-close'
+    event.target.classList.contains('modal-film__backdrop') ||
+    event.target.classList.contains('modal__btn-close') ||
+    event.target.classList.contains('modal__icon-close')
   ) {
     closeModal();
   }
