@@ -149,3 +149,12 @@ function closeModal() {
   document.removeEventListener('click', onClickClose);
   document.removeEventListener('keydown', onEscClose);
 }
+
+const body = document.querySelector('body');
+
+body.addEventListener('scroll', vfr);
+
+function vfr() {
+  const logo = document.querySelector('.header__logo');
+  logo.classList.add('is-hidden');
+}
