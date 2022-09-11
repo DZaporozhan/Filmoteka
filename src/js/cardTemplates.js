@@ -1,7 +1,24 @@
 import { genreList } from './retrieveGenreList';
+import NewApiServise from './api-servise';
+import refs from './refs';
 
 const basePosterUrl = 'https://image.tmdb.org/t/p/';
 const fileSize = `w500`;
+
+const newsApiServise = new NewApiServise();
+function trendingMovies() {
+  newsApiServise
+    .getTrendingMovies()
+    .then(data => {
+      const movieCard = createMovieCard(data.results);
+      return movieCard;
+    })
+    .then(data => {
+      refs.mainList.insertAdjacentHTML('beforeend', data);
+    });
+}
+
+trendingMovies();
 
 function createMovieCard(filmInfo) {
   return filmInfo
