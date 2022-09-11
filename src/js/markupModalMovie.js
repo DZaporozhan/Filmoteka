@@ -22,7 +22,7 @@ function onMovieCLick(event) {
   if (!isCard) {
     return;
   }
-  movieId = isCard.getAttribute('data');
+  const movieId = isCard.getAttribute('data');
   console.log(movieId);
   openModal();
 
