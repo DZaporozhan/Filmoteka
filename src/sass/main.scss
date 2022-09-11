@@ -12,14 +12,14 @@
 @import './components/backdrop';
 @import './components/modal';
 @import './components/spinner';
-@import './components/movie-modal';
+@import './components/movieModal';
 @import './components/modalFooter';
+@import './components/button';
 
 @import './base/reset';
 @import './base/common';
 
 @import './layout/header';
+@import './layout/header-mylibrary';
 @import './layout/footer';
 @import './layout/main';
-
-

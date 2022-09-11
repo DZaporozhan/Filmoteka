@@ -1,16 +1,35 @@
 import NewApiServise from './api-servise';
-import { getWatchedList } from './getWatchedList';
-import { getQueueList } from './getQueueList';
+import refs from './refs';
 
-const modalFilmInfoRef = document.querySelector('.modal-film');
+import { createMovieCard } from './cardTemplates';
 
 const noPosterImg =
   'https://freedesignfile.com/upload/2014/07/Movie-time-design-elements-vector-backgrounds-01.jpg';
 
-export async function renderModalFilmInfoMarkup(movie) {
-  const response = await getTrendingMovies();
-  const modalFilmInfoMarkup = createModalFilmInfoMarkup(movie);
-  modalFilmInfoRef.insertAdjacentHTML('beforeend', modalFilmInfoMarkup);
+refs.mainList.addEventListener('click', onMovieCLick);
+
+const newsApiServise = new NewApiServise();
+
+function moviesByID(movieID) {
+  newsApiServise.getMoviesByID(movieID).then(data => {
+    createModalFilmInfoMarkup(data);
+  });
+}
+
+function onMovieCLick(event) {
+  refs.modalFilmInfoRef.innerHTML = '';
+  const isCard = event.target.closest('.movieCard');
+  if (!isCard) {
+    return;
+  }
+  const movieId = isCard.getAttribute('data');
+  console.log(movieId);
+  openModal();
+
+  moviesByID(movieId);
+
+  document.addEventListener('keydown', onEscClose);
+  document.addEventListener('click', onClickClose);
 }
 
 function createModalFilmInfoMarkup({
@@ -22,23 +41,14 @@ function createModalFilmInfoMarkup({
   poster_path,
   overview,
   vote_count,
-  id,
 }) {
-  const movieGenres = genres.map(genre => {
-    return genre.name;
-  });
-  const queueList = getQueueList();
-  let btnWatched = 'add to watched';
-  let buttonQueue = 'add to queue';
-  buttonQueue = queueList.some(item => item[id])
-    ? 'remove queue'
-    : 'add to queue';
-  const watchedList = getWatchedList();
-
-  if (watchedList.some(item => item[id])) {
-    btnWatched = 'Remove watched';
-  }
-  return ` <div class="modal-film__img">
+  const genresList = genres.map(genre => genre.name).join(', ');
+  refs.modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
+      <svg class="modal__icon-close" width="14" height="14">
+        <use href="/src/images/icon.svg#icon-close"></use>
+      </svg>
+    </button>
+  <div class="modal-film__img">
       <picture class="modal-film__poster">
       <source
           srcset="${poster_path} === null ? noPosterImg :
@@ -91,7 +101,7 @@ function createModalFilmInfoMarkup({
       </tr>
       <tr class="modal-film__table-row">
         <td class="modal-film__table-description">Genre</td>
-        <td class="modal-film__table-value">${movieGenres}</td>
+        <td class="modal-film__table-value">${genresList}</td>
       </tr>
     </table>
     <h3 class="modal-film__about">About</h3>
@@ -99,17 +109,43 @@ function createModalFilmInfoMarkup({
     </p>
     <ul class="modal-film__container-btn">
       <li>
-        <button class="modal-btn modal-film_btn-watched" type="submit">
-         ${btnWatched}
-        </button>
+        <button class="modal-btn modal-film_btn-watched" type="submit">add to watched</button>
       </li>
       <li>
-        <button class="modal-btn modal-film_btn-queue" type="submit">
-         ${buttonQueue}
-        </button>
+        <button class="modal-btn modal-film_btn-queue" type="submit">add to queue</button>
       </li>
     </ul>
     </div>
 </div>
 </div>`;
+}
+
+function onEscClose(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+}
+
+function onClickClose(event) {
+  if (
+    event.target === 'modal-film__backdrop' ||
+    event.target.id === 'modal__btn-close' ||
+    event.target.id === 'modal__icon-close'
+  ) {
+    closeModal();
+  }
+}
+
+function openModal() {
+  refs.backdropFilmRef.classList.remove('is-hidden');
+  refs.modalFilmInfoRef.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
+}
+
+function closeModal() {
+  refs.backdropFilmRef.classList.add('is-hidden');
+  refs.modalFilmInfoRef.classList.add('is-hidden');
+  refs.body.classList.remove('no-scroll');
+  document.removeEventListener('click', onClickClose);
+  document.removeEventListener('keydown', onEscClose);
 }

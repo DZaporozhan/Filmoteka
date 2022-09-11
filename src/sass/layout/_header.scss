@@ -251,6 +251,7 @@
   color: $line-color;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .nav__item-log-out {
@@ -258,8 +259,7 @@
   padding: 8px 5px 6px;
   min-width: 56px;
 }
-
-.input__error {
+<<<<<<< HEAD .input__error {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.17;
