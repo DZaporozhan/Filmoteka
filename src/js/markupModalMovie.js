@@ -9,24 +9,30 @@ const noPosterImg =
 const backdropRef = document.querySelector('.modal-film__backdrop');
 const body = document.querySelector('body');
 const movieModalRef = document.querySelector('.modal-film');
+const galleryRef = document.querySelector('.movieList');
 
-const itemRef = document.querySelector('.movieCard');
+galleryRef.addEventListener('click', onMovieCLick);
 
-itemRef.addEventListener('click', onMovieCLick);
+const newsApiServise = new NewApiServise();
 
-async function onMovieCLick(event) {
+function moviesByID(movieID) {
+  newsApiServise
+    .getMoviesByID(movieID)
+    .then(data => createModalFilmInfoMarkup(data));
+}
+
+function onMovieCLick(event) {
   event.preventDefault();
   movieModalRef.innerHTML = '';
-  if (event.target.nodeName !== 'IMG' && event.target.nodeName !== 'P') {
+  isCard = event.target.closest('.movieCard');
+  if (!isCard) {
     return;
   }
+  movieId = isCard.getAttribute('data');
   openModal();
 
-  const movieId = event.target.dataset.id;
+  moviesByID(movieID);
 
-  const newsApiServise = await new NewApiServise(movieId);
-  const movieInfo = responce.data;
-  createModalFilmInfoMarkup(movieInfo);
   document.addEventListener('keydown', onEscClose);
   document.addEventListener('click', onClickClose);
 }
