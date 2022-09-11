@@ -7,11 +7,12 @@ function createMovieCard(filmInfo) {
   return filmInfo
     .map(
       ({
+        id,
         title,
         poster_path,
         genre_ids,
         release_date,
-      }) => `<li class="movieCard">
+      }) => `<li class="movieCard" data="${id}">
         <img src="${basePosterUrl}${fileSize}${poster_path}" alt="${title} movie poster" class="movieCard__img">
         <p class="movieCard__title">${title.toUpperCase()}</p>
         <p class="movieCard__info">${genre_ids
