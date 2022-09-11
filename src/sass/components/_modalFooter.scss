@@ -1,6 +1,6 @@
 .backdrop__container {
   position: absolute;
-  top: 100%;
+  top: 87%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
@@ -9,20 +9,21 @@
   height: 100vh;
 
   @media screen and(min-width: 320px) {
-    top: 295%;
+    top: 202%;
     width: 320;
     height: 2500px;
     background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
   }
 
   @media screen and(min-width: 768px) {
-    top: 140%;
+    top: 95%;
     width: 600px;
     height: 900px;
     background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
   }
 
   @media screen and(min-width: 1200px) {
+    top: 75%;
     width: 900px;
     height: 670px;
     background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
