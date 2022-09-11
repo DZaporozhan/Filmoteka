@@ -4,6 +4,7 @@ import { createMovieCard } from './js/cardTemplates';
 const refs = {
   searchForm: document.querySelector('#search-form'),
   mainList: document.querySelector('.movieList'),
+  warningOnSearch: document.querySelector('#js-input-error'),
 };
 
 refs.searchForm.addEventListener('submit', onSearch);
@@ -18,6 +19,7 @@ function onSearch(e) {
   } = e.currentTarget;
 
   if (!keys.value) {
+    refs.warningOnSearch.textContent = `Please enter a valid movie name!`;
     return;
   }
   const uri = keys.value;
@@ -50,8 +52,15 @@ function SearchMovies() {
       return movieCard;
     })
     .then(data => {
-      refs.mainList.innerHTML = '';
-      refs.mainList.insertAdjacentHTML('beforeend', data);
+      if (!data) {
+        refs.warningOnSearch.textContent = `Sorry, there are no results found. Try searching for something else!`;
+        refs.searchForm.reset();
+      } else {
+        refs.mainList.innerHTML = '';
+        refs.mainList.insertAdjacentHTML('beforeend', data);
+        refs.warningOnSearch.textContent = '';
+        refs.searchForm.reset();
+      }
     });
 }
 
