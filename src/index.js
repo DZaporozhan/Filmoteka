@@ -67,3 +67,5 @@ function MoviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => console.log(data));
 }
 MoviesByID(movieID);
+// connections for modal footer
+import './js/modalFooter';
