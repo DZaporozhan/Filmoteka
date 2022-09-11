@@ -9,7 +9,7 @@ export default class NewApiServise {
 
   async getTrendingMovies() {
     try {
-      const url = `https://api.themoviedb.org/3/trending/movie/day?${this.key}`;
+      const url = `https://api.themoviedb.org/3/trending/movie/day?${this.key}&page=${this.page}`;
 
       const response = await axios.get(url);
 
@@ -43,6 +43,17 @@ export default class NewApiServise {
 
   resetPage() {
     this.page = 1;
+  }
+
+  incrementPage() {
+    return (this.page += 1);
+  }
+
+  decrementPage() {
+    if (this.page === 1) {
+      return;
+    }
+    return (this.page -= 1);
   }
 
   get query() {
