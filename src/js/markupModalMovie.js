@@ -1,5 +1,5 @@
 import NewApiServise from './api-servise';
-import { modalFilmInfoRef, backdropFilmRef, body, mainList } from './refs';
+import refs from './refs';
 // import { getWatchedList } from './getWatchedList';
 // import { getQueueList } from './getQueueList';
 import { createMovieCard } from './cardTemplates';
@@ -7,32 +7,28 @@ import { createMovieCard } from './cardTemplates';
 const noPosterImg =
   'https://freedesignfile.com/upload/2014/07/Movie-time-design-elements-vector-backgrounds-01.jpg';
 
-// const backdropFilmRef = document.querySelector('.modal-film__backdrop');
-// const body = document.querySelector('body');
-// const modalFilmInfoRef = document.querySelector('.modal-film');
-// const galleryRef = document.querySelector('.movieList');
-
-mainList.addEventListener('click', onMovieCLick);
+refs.mainList.addEventListener('click', onMovieCLick);
 
 const newsApiServise = new NewApiServise();
 
 function moviesByID(movieID) {
-  newsApiServise
-    .getMoviesByID(movieID)
-    .then(data => createModalFilmInfoMarkup(data));
+  newsApiServise.getMoviesByID(movieID).then(data => {
+    createModalFilmInfoMarkup(data);
+  });
 }
 
 function onMovieCLick(event) {
   event.preventDefault();
-  modalFilmInfoRef.innerHTML = '';
+  refs.modalFilmInfoRef.innerHTML = '';
   isCard = event.target.closest('.movieCard');
   if (!isCard) {
     return;
   }
   movieId = isCard.getAttribute('data');
+  console.log(movieId);
   openModal();
 
-  moviesByID(movieID);
+  moviesByID(movieId);
 
   document.addEventListener('keydown', onEscClose);
   document.addEventListener('click', onClickClose);
@@ -49,7 +45,7 @@ function createModalFilmInfoMarkup({
   vote_count,
 }) {
   const genresList = genres.map(genre => genre.name).join(', ');
-  modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
+  refs.modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
       <svg class="modal__icon-close" width="14" height="14">
         <use href="/src/images/icon.svg#icon-close"></use>
       </svg>
@@ -143,15 +139,15 @@ function onClickClose(event) {
 }
 
 function openModal() {
-  backdropFilmRef.classList.remove('is-hidden');
-  modalFilmInfoRef.classList.remove('is-hidden');
-  body.classList.add('no-scroll');
+  refs.backdropFilmRef.classList.remove('is-hidden');
+  refs.modalFilmInfoRef.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
 }
 
 function closeModal() {
-  backdropFilmRef.classList.add('is-hidden');
-  modalFilmInfoRef.classList.add('is-hidden');
-  body.classList.remove('no-scroll');
+  refs.backdropFilmRef.classList.add('is-hidden');
+  refs.modalFilmInfoRef.classList.add('is-hidden');
+  refs.body.classList.remove('no-scroll');
   document.removeEventListener('click', onClickClose);
   document.removeEventListener('keydown', onEscClose);
 }

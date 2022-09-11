@@ -9,5 +9,3 @@ export default refs = {
   backdropFilmRef: document.querySelector('.modal-film__backdrop'),
   body: document.querySelector('body'),
 };
-
-export const { modalFilmInfoRef, backdropFilmRef, body, mainList } = refs;

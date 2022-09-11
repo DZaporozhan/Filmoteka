@@ -1,6 +1,7 @@
 import NewApiServise from './js/api-servise';
 import { createMovieCard } from './js/cardTemplates';
 import { onSpinnerEnabled, onSpinnerDisabled } from './js/spinner';
+import './js/markupModalMovie';
 ///////////////////===SPINNER TEST ===//////////////////
 onSpinnerEnabled();
 setTimeout(() => {
