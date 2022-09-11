@@ -1,6 +1,6 @@
 import NewApiServise from './js/api-servise';
 import { createMovieCard } from './js/cardTemplates';
-
+import { theme } from './js/theme';
 const refs = {
   searchForm: document.querySelector('#search-form'),
   mainList: document.querySelector('.movieList'),
@@ -60,3 +60,5 @@ function MoviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => console.log(data));
 }
 MoviesByID(movieID);
+
+
