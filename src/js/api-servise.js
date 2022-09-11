@@ -40,14 +40,6 @@ export default class NewApiServise {
       console.log(error);
     }
   }
-  //   async retrieveGenreList() {
-  //     const genreList = {};
-  //     const { data } = await axios.get(
-  //       `https://api.themoviedb.org/3/genre/movie/list?${this.key}&language=en-US`
-  //     );
-  //     data.genres.forEach(genre => (genreList[genre['id']] = genre['name']));
-  //     return genreList;
-  //   }
 
   resetPage() {
     this.page = 1;
