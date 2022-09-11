@@ -7,11 +7,13 @@ document.addEventListener('keydown', handleonCloseByEscape);
 
 function handleOnOpenModal() {
   refs.backdropFooterEl.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
 }
 
 function handleonCloseModal(e) {
   const closeByButton = e.target.classList.contains('backdrop__button');
   const closeByBackdrop = e.target.classList.contains('backdrop');
+  refs.body.classList.remove('no-scroll');
   if (!closeByButton && !closeByBackdrop) {
     return;
   } else {
@@ -22,6 +24,7 @@ function handleonCloseModal(e) {
 function handleonCloseByEscape(event) {
   if (event.code === 'Escape') {
     refs.backdropFooterEl.classList.add('is-hidden');
+    refs.body.classList.remove('no-scroll');
   }
 }
 
