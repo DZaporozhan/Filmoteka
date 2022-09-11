@@ -1,4 +1,4 @@
-const refs = {
+export default refs = {
   searchForm: document.querySelector('#search-form'),
   mainList: document.querySelector('.movieList'),
   warningOnSearch: document.querySelector('#js-input-error'),
