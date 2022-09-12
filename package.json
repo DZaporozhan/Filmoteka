@@ -21,7 +21,7 @@
     "axios": "^0.27.2",
     "basiclightbox": "^5.0.4",
     "modern-normalize": "^1.1.0",
-    "movie-trailer": "^1.0.4"
+    "movie-trailer": "^2.0.5"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
