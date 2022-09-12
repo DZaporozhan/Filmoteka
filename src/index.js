@@ -4,5 +4,6 @@ import './js/modalFooter';
 import './js/trendingMovies';
 import './js/spinner';
 import './js/theme';
-import './js/pagination'
-
+import './js/onClickWatchTrailer';
+import './js/scroll-up';
+import './js/pagination';
