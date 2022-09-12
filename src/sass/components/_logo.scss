@@ -2,11 +2,9 @@
   display: inline-block;
   height: 24px;
   width: 24px;
-  margin-top: 11px;
+  // margin-top: 5px;
   overflow: hidden;
-  top: 36px;
-  left: 48px;
-  position: absolute;
+  margin-right: 10px;
 
   @include tablet {
     top: 41px;
@@ -55,7 +53,7 @@
 }
 
 .header__logo--icon {
-  animation: filmReel 1s linear infinite;
+  animation: filmReel 3s linear infinite;
 }
 
 img {
