@@ -23,8 +23,22 @@
           <li class="nav__item active">
             <a class="nav__link" href="index.html"> home </a>
           </li>
-          <li class="nav__item">
+          <li class="nav__item hidden-item" id="library">
             <a class="nav__link" href="library.html"> my library </a>
+          </li>
+          <li>
+            <button type="button" class="open-auth">
+              <svg class="auth-icon" width="20" height="20">
+                <use href="/src/images/symbol-defs.svg#icon-closed"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="exit hidden-item">
+              <svg class="auth-icon" width="20" height="20">
+                <use href="/src/images/symbol-defs.svg#icon-open"></use>
+              </svg>
+            </button>
           </li>
         </ul>
       </nav>
