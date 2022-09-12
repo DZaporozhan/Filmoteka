@@ -3,6 +3,7 @@ const scrollUpBtn = document.querySelector('.scrollUpBtn');
 const rootEl = document.documentElement;
 
 // When scrolling on the website calling a function that calculates scrolled pixels
+onScrollFunction();
 window.onscroll = function () {
   onScrollFunction();
 };
