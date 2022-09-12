@@ -19,14 +19,9 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-<<<<<<< Updated upstream
     "basiclightbox": "^5.0.4",
     "modern-normalize": "^1.1.0",
     "movie-trailer": "^2.0.5"
-=======
-    "firebase": "^9.9.4",
-    "modern-normalize": "^1.1.0"
->>>>>>> Stashed changes
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
