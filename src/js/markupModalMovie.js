@@ -1,7 +1,7 @@
 import NewApiServise from './api-servise';
 import refs from './refs';
-// import { getWatchedList } from './getWatchedList';
-// import { getQueueList } from './getQueueList';
+import watchTrailer from './onClickWatchTrailer';
+
 import { createMovieCard } from './cardTemplates';
 
 const noPosterImg =
@@ -18,13 +18,12 @@ function moviesByID(movieID) {
 }
 
 function onMovieCLick(event) {
-  event.preventDefault();
   refs.modalFilmInfoRef.innerHTML = '';
-  isCard = event.target.closest('.movieCard');
+  const isCard = event.target.closest('.movieCard');
   if (!isCard) {
     return;
   }
-  movieId = isCard.getAttribute('data');
+  const movieId = isCard.getAttribute('data');
   console.log(movieId);
   openModal();
 
@@ -43,11 +42,21 @@ function createModalFilmInfoMarkup({
   poster_path,
   overview,
   vote_count,
+  id,
 }) {
   const genresList = genres.map(genre => genre.name).join(', ');
   refs.modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
-      <svg class="modal__icon-close" width="14" height="14">
-        <use href="/src/images/icon.svg#icon-close"></use>
+     <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        fill="currentColor"
+        class="modal__icon-close"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+        />
       </svg>
     </button>
   <div class="modal-film__img">
@@ -81,6 +90,18 @@ function createModalFilmInfoMarkup({
         class="modal-film__poster"
       />
       </picture>
+
+    <div class='modal__trailer-wrapper'>
+      <button class='modal__trailer-btn js-trailer-btn'
+      type='button'
+      data-id='${id}'
+      data-name='${original_title}'>
+      watch trailer
+      </button>
+    </div> 
+
+
+
     </div>
     <div class="modal-film__description">
     <h2 class="modal-film__title">${title}</h2>
@@ -120,19 +141,25 @@ function createModalFilmInfoMarkup({
     </div>
 </div>
 </div>`;
+//}
+
+//trailer
+  const trailerBtn = document.querySelector('.js-trailer-btn');
+  trailerBtn.addEventListener('click', getMovieTrailerByIdName);
 }
 
 function onEscClose(event) {
   if (event.key === 'Escape') {
     closeModal();
+    onCloseTrailer();
   }
 }
 
 function onClickClose(event) {
   if (
-    event.target === 'modal-film__backdrop' ||
-    event.target.id === 'modal__btn-close' ||
-    event.target.id === 'modal__icon-close'
+    event.target.classList.contains('modal-film__backdrop') ||
+    event.target.classList.contains('modal__btn-close') ||
+    event.target.classList.contains('modal__icon-close')
   ) {
     closeModal();
   }
@@ -151,3 +178,25 @@ function closeModal() {
   document.removeEventListener('click', onClickClose);
   document.removeEventListener('keydown', onEscClose);
 }
+
+function getMovieTrailerByIdName(e) {
+  const id = e.target.dataset.id;
+  const name = e.target.dataset.name;
+  new watchTrailer(id, name).showTrailer();
+}
+
+function onCloseTrailer() {
+  const watchTrailerLightbox = document.querySelector('.basicLightbox');
+  watchTrailerLightbox.remove();
+}
+
+const body = document.querySelector('body');
+
+body.addEventListener('scroll', vfr);
+
+function vfr() {
+  const logo = document.querySelector('.header__logo');
+  logo.classList.add('is-hidden');
+}
+
+

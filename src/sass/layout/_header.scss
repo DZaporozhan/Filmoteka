@@ -1,22 +1,3 @@
-// .header {
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-//   background-image: linear-gradient(
-//       to right,
-//       rgba(0, 0, 0, 0.56),
-//       rgba(0, 0, 0, 0.56)
-//     ),
-//     url('../images/abstract-background-with-red-lines.jpg');
-// }
-
-// .header__wrapper {
-//   display: flex;
-//   position: relative;
-//   align-items: center;
-//   justify-content: space-between;
-// }
-
 .header {
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -58,7 +39,7 @@
     }
   }
   @media screen and (min-width: $desktop) {
-    max-width: 1600px;
+    max-width: 1280px;
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
@@ -135,26 +116,6 @@
   height: 30px;
 }
 
-// .nav__item-button {
-//   min-width: 56px;
-//   padding: 5px;
-//   padding-bottom: 3px;
-//   font-size: 10px;
-// }
-
-// .nav__item-button:first-child {
-//   margin-bottom: 5px;
-// }
-
-// .nav__item-button:focus {
-//   background-color: #ab8d7852;
-// }
-
-// .nav__item-button:hover,
-// .nav__item-button:focus {
-//   color: $secondary-text-color;
-// }
-
 .nav__item.active {
   position: relative;
 }
@@ -174,7 +135,6 @@
   color: $secondary-text-color;
 
   font-weight: 500;
-  // font-size: 12px;
   line-height: 1.17;
 
   display: flex;
@@ -237,7 +197,6 @@
   &:hover,
   &:focus {
     stroke: $sixth-text-color;
-    // transform: scale(1.05);
   }
 }
 .input__search-icon {
@@ -258,4 +217,52 @@
   background-color: $secondary-text-color;
   padding: 8px 5px 6px;
   min-width: 56px;
+}
+.input__error {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.17;
+  margin-top: 20px;
+  color: $line-color;
+  display: flex;
+  justify-content: center;
+}
+
+body.dark {
+  background-color: $fourth-text-color;
+}
+
+.toggle {
+  width: 30px;
+  height: 30px;
+  background-color: #eee8e1;
+  position: absolute;
+  top: 10px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+body.dark .toggle {
+  // background-color: #464646;
+  background-color: $fourth-text-color;
+}
+body.dark .modal-film {
+  background-color: $fourth-text-color;
+}
+
+.toggle i {
+  font-size: 22px;
+  color: #777;
+}
+
+body.dark .toggle i {
+  color: #ddd;
+}
+
+body.dark .footer {
+  background-color: $fourth-text-color;
+  color: $secondary-text-color;
 }

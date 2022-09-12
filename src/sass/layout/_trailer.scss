@@ -1,0 +1,148 @@
+.modal-film__img {
+  position: relative;
+  display: flex;
+  max-width: 100%;
+ 
+}
+
+.modal__trailer-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 250ms linear;
+}
+
+.modal-film__img:hover .modal__trailer-wrapper {
+  opacity: 1;
+}
+
+.modal__trailer-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 10px;
+  border: none;
+
+  background-color: transparent;
+  transform: scale(1);
+  transition: transform $animation;
+
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  color: $sixth-text-color;
+
+  &:hover {
+    transform: scale(1.5);
+    transition: transform $animation;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    background-image: url(../images/play.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.trailer-video__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url(../images/close.svg);
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 500ms ease;
+  z-index: 999;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
+  }
+}
+
+// basicLightbox
+.basicLightbox {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0.01;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+  will-change: opacity;
+
+  &--visible {
+    opacity: 1;
+  }
+
+  &__placeholder {
+    max-width: 100%;
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+    z-index: 1;
+    will-change: transform;
+
+    > img:first-child:last-child,
+    > video:first-child:last-child,
+    > iframe:first-child:last-child {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      max-width: 95%;
+      max-height: 95%;
+    }
+
+    > video:first-child:last-child,
+    > iframe:first-child:last-child {
+      pointer-events: auto;
+    }
+
+    > img:first-child:last-child,
+    > video:first-child:last-child {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  &--img &__placeholder,
+  &--video &__placeholder,
+  &--iframe &__placeholder {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &--visible &__placeholder {
+    transform: scale(1);
+  }
+}

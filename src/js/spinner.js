@@ -1,10 +1,15 @@
-const spinnerEl = document.querySelector('.backdrop-spinner');
+import refs from './refs';
 
 function onSpinnerEnabled() {
-  return spinnerEl.classList.remove('visually-hidden');
+  return refs.spinnerEl.classList.remove('visually-hidden');
 }
 function onSpinnerDisabled() {
-  return spinnerEl.classList.add('visually-hidden');
+  return refs.spinnerEl.classList.add('visually-hidden');
 }
-
+///////////////////===SPINNER TEST ===//////////////////
+onSpinnerEnabled();
+setTimeout(() => {
+  onSpinnerDisabled();
+}, 2000);
+/////////////////////////////////////////////////////
 export { onSpinnerEnabled, onSpinnerDisabled };
