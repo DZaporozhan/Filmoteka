@@ -1,5 +1,6 @@
 import NewApiServise from './api-servise';
 import refs from './refs';
+import watchTrailer from './onClickWatchTrailer';
 
 import { createMovieCard } from './cardTemplates';
 
@@ -41,6 +42,7 @@ function createModalFilmInfoMarkup({
   poster_path,
   overview,
   vote_count,
+  id,
 }) {
   const genresList = genres.map(genre => genre.name).join(', ');
   refs.modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
@@ -88,6 +90,18 @@ function createModalFilmInfoMarkup({
         class="modal-film__poster"
       />
       </picture>
+
+    <div class='modal__trailer-wrapper'>
+      <button class='modal__trailer-btn js-trailer-btn'
+      type='button'
+      data-id='${id}'
+      data-name='${original_title}'>
+      watch trailer
+      </button>
+    </div> 
+
+
+
     </div>
     <div class="modal-film__description">
     <h2 class="modal-film__title">${title}</h2>
@@ -127,11 +141,17 @@ function createModalFilmInfoMarkup({
     </div>
 </div>
 </div>`;
+//}
+
+//trailer
+  const trailerBtn = document.querySelector('.js-trailer-btn');
+  trailerBtn.addEventListener('click', getMovieTrailerByIdName);
 }
 
 function onEscClose(event) {
   if (event.key === 'Escape') {
     closeModal();
+    onCloseTrailer();
   }
 }
 
@@ -159,6 +179,17 @@ function closeModal() {
   document.removeEventListener('keydown', onEscClose);
 }
 
+function getMovieTrailerByIdName(e) {
+  const id = e.target.dataset.id;
+  const name = e.target.dataset.name;
+  new watchTrailer(id, name).showTrailer();
+}
+
+function onCloseTrailer() {
+  const watchTrailerLightbox = document.querySelector('.basicLightbox');
+  watchTrailerLightbox.remove();
+}
+
 const body = document.querySelector('body');
 
 body.addEventListener('scroll', vfr);
@@ -167,3 +198,5 @@ function vfr() {
   const logo = document.querySelector('.header__logo');
   logo.classList.add('is-hidden');
 }
+
+
