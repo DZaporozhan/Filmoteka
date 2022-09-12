@@ -5,3 +5,4 @@ import './js/trendingMovies';
 import './js/spinner';
 import './js/theme';
 import './js/onClickWatchTrailer';
+import './js/scroll-up';
