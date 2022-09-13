@@ -46,6 +46,8 @@ function createModalFilmInfoMarkup({
   vote_count,
   id,
 }) {
+  const base_url = 'https://image.tmdb.org/t/p/';
+  const size = 'w500';
   const genresList = genres.map(genre => genre.name).join(', ');
   refs.modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
      <svg
@@ -62,55 +64,16 @@ function createModalFilmInfoMarkup({
       </svg>
     </button>
   <div class="modal-film__img">
-      <picture class="modal-film__poster">
-      <source
-          srcset="${
-            poster_path
-              ? `https://image.tmdb.org/t/p/original/${poster_path} 1x,
-            https://image.tmdb.org/t/p/original/${poster_path} 2x`
-              : imgPlaceholder
-          }
-          "
-          media="(min-width: 1024px)"
-        />
-      <source
-          srcset="${
-            poster_path
-              ? `https://image.tmdb.org/t/p/w500/${poster_path} 1x,
-            https://image.tmdb.org/t/p/w500/${poster_path} 2x`
-              : imgPlaceholder
-          }
-          "
-          media="(min-width: 768px)"
-        />
-      <source
-          srcset="${
-            poster_path
-              ? `https://image.tmdb.org/t/p/w342/${poster_path} 1x,
-            https://image.tmdb.org/t/p/w342/${poster_path} 2x`
-              : imgPlaceholder
-          }
-          "
-          media="(min-width: 320px)"
-        />
-
+      <div class="modal-film__poster">
       <img
-       srcset="${
-         poster_path
-           ? `https://image.tmdb.org/t/p/w342/${poster_path} 1x,
-            https://image.tmdb.org/t/p/w342/${poster_path} 2x`
-           : imgPlaceholder
-       }
         src="${
-          poster_path
-            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-            : imgPlaceholder
+          poster_path ? `${base_url}${size}${poster_path}` : imgPlaceholder
         }"
         alt="${title}"
-        loading="lazy"
         class="modal-film__poster"
+        loading="lazy" 
       />
-      </picture>
+      </div>
 
     <div class='modal__trailer-wrapper'>
       <button class='modal__trailer-btn js-trailer-btn'
@@ -160,7 +123,6 @@ function createModalFilmInfoMarkup({
     </div>
 </div>
 </div>`;
-  //}
 
   //trailer
   const trailerBtn = document.querySelector('.js-trailer-btn');
