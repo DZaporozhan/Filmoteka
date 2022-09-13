@@ -1,11 +1,9 @@
 .modal-film__img {
   position: relative;
-  display: flex;
-  height: 100%;
-  
 }
 
 .modal__trailer-wrapper {
+  top: 0;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -18,6 +16,14 @@
   border-radius: 5px;
   opacity: 0;
   transition: opacity 250ms linear;
+
+  @include tablet {
+    height: 374px;
+  }
+
+  @include desktop-modal {
+    height: 100%;
+  }
 }
 
 .modal-film__img:hover .modal__trailer-wrapper {
