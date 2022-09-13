@@ -1,15 +1,18 @@
 import refs from './refs';
 
+window.addEventListener('load', onSpinnerEnabled);
+
 function onSpinnerEnabled() {
-  return refs.spinnerEl.classList.remove('visually-hidden');
+  refs.spinnerEl.classList.add('visually-hidden');
+  setTimeout(() => {
+    refs.spinnerEl.remove();
+  }, 600);
 }
-function onSpinnerDisabled() {
-  return refs.spinnerEl.classList.add('visually-hidden');
-}
-///////////////////===SPINNER TEST ===//////////////////
-onSpinnerEnabled();
-setTimeout(() => {
-  onSpinnerDisabled();
-}, 2000);
-/////////////////////////////////////////////////////
-export { onSpinnerEnabled, onSpinnerDisabled };
+
+// function onSpinnerEnabled() {
+//   return refs.spinnerEl.classList.remove('visually-hidden');
+// }
+// function onSpinnerDisabled() {
+//   return refs.spinnerEl.classList.add('visually-hidden');
+// }
+// export { onSpinnerEnabled, onSpinnerDisabled };
