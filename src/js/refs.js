@@ -21,5 +21,7 @@ const refs = {
   modalSignUp: document.querySelector('#reg'),
   signUpForm: document.querySelector('#reg-form'),
   toggle: document.querySelector('#theme-switch-toggle'),
+  modalQueueBtn: document.querySelector('.modal-film_btn-queue'),
+  modalWatchedBtn: document.querySelector('.modal-film_btn-watched'),
 };
 export default refs;
