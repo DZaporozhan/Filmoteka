@@ -95,6 +95,12 @@ function createModalFilmInfoMarkup({
         />
 
       <img
+       srcset="${
+         poster_path
+           ? `https://image.tmdb.org/t/p/w342/${poster_path} 1x,
+            https://image.tmdb.org/t/p/w342/${poster_path} 2x`
+           : imgPlaceholder
+       }
         src="${
           poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`

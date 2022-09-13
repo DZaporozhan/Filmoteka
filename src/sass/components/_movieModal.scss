@@ -95,6 +95,7 @@
   @include tablet {
     width: 264px;
     height: 373.55px;
+    object-fit: cover;
   }
 
   @include desktop-modal {
