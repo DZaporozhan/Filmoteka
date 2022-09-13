@@ -44,3 +44,45 @@ function updatePagination(e) {
     behavior: 'smooth',
   });
 }
+// pagination.off('afterMove', updatePagination)
+// //  відписуємося від кліка і запиту на кнопці пагінації коли в формі вибраний жанр фільму
+// // pagination.on('afterMove', updatePaginationAfterSearch);
+// // pagination.off('afterMove', updatePaginationAfterSearch);
+
+
+pagination.off('afterMove', updatePaginationAfterSearch);
+  pagination.on('afterMove', updatePaginationAfterSearch);
+
+ function updatePaginationAfterSearch(e) {
+        newsApiServise.setPage(e.page);
+   console.log(newsApiServise.page);
+   
+  newsApiServise
+    .getSearchMovies()
+    .then(data => {
+      const movieCard = createMovieCard(data.results);
+      return movieCard;
+    })
+    .then(data => {
+      refs.mainList.innerHTML = data;
+    });
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+ };
+
+// //стара функці
+// //   function updatePaginationAfterSearch(e) {
+// //        const currentPage = e.page;
+// //         console.log(currentPage);
+
+// // newsApiServise.getSearchMovies(currentPage).then(({results}) => {
+    
+// //     const MakeUp = createMovieCard(results);
+
+// //             refs.mainList.innerHTML = MakeUp;
+// //             //   refs.mainList.insertAdjacentHTML('beforeend', MakeUp);
+// //         }).catch(error => console.log(error.message));
+// // };
