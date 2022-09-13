@@ -22,8 +22,6 @@ const auth = getAuth(app);
 const db = getDatabase(app);
 
 
-
-
 // const openAuth = document.querySelector('.open-auth')
 // const backdropFooterEl = document.querySelector('.backdrop')
 // const logOut = document.querySelector('.exit')
@@ -49,13 +47,13 @@ function openModalAuth() {
 // const library =document.querySelector('#library')
 onAuthStateChanged(auth, user => {
   if (user) {
-    refs.library.classList.remove('.hidden-item'); 
+    refs.library.classList.remove('hidden-item'); 
     refs.openAuth.classList.add('hidden-item')
     refs.logOut.classList.remove('hidden-item')
     
     // Включает My library
   } else {
-    refs.library.classList.add('.hidden-item'); 
+    refs.library.classList.add('hidden-item'); 
     refs.openAuth.classList.remove('hidden-item')
     refs.logOut.classList.add('hidden-item')
     // User is signed out
@@ -64,15 +62,15 @@ onAuthStateChanged(auth, user => {
 });
 
 
-const signIn = {
-    // openSignInBtn: document.querySelector('#login-btn'),
-  toLogIn: document.querySelector('#to-login'),
-    modalSignIn: document.querySelector('#auth'),
-    signInForm: document.querySelector('#auth-form')
-}
+// const signIn = {
+//     // openSignInBtn: document.querySelector('#login-btn'),
+//   toLogIn: document.querySelector('#to-login'),
+//     modalSignIn: document.querySelector('#auth'),
+//     signInForm: document.querySelector('#auth-form')
+// }
 
 // signIn.openSignInBtn.addEventListener('click', openModal)
-signIn.signInForm.addEventListener('submit', submitAuth)
+refs.signInForm.addEventListener('submit', submitAuth)
 
 
 
