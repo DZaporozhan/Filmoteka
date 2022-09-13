@@ -8,5 +8,6 @@ const refs = {
   spinnerEl: document.querySelector('.backdrop-spinner'),
   backdropFilmRef: document.querySelector('.modal-film__backdrop'),
   body: document.querySelector('body'),
+  toggle: document.querySelector('#theme-switch-toggle'),
 };
 export default refs;
