@@ -1,21 +1,20 @@
-const body = document.querySelector('body');
-const toggle = document.querySelector('.toggle');
+import refs from './refs';
 
-toggle.addEventListener('click', () => {
-  body.classList.toggle('dark')
-    ? (toggle.firstElementChild.className = 'far fa-moon')
-    : (toggle.firstElementChild.className = 'far fa-sun');
-  if (body.classList.contains('dark')) {
-    localStorage.setItem('darkTheme', 'true');
-  } else {
+refs.toggle.addEventListener('change', event => {
+  if (refs.body.classList.contains('dark')) {
+    refs.body.classList.remove('dark');
     localStorage.removeItem('darkTheme');
+  } else {
+    refs.body.classList.add('dark');
+    localStorage.setItem('darkTheme', 'true');
   }
 });
 
 let theme = localStorage.getItem('darkTheme');
 function checkTheme(theme) {
   if (localStorage.getItem('darkTheme')) {
-    body.classList.add('dark');
+    refs.body.classList.add('dark');
+    refs.toggle.checked = true;
   }
   return;
 }

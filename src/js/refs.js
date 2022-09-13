@@ -9,7 +9,6 @@ const refs = {
   backdropFilmRef: document.querySelector('.modal-film__backdrop'),
   body: document.querySelector('body'),
 
-
   openAuth: document.querySelector('.open-auth'),
   // backdrop: document.querySelector('.backdrop'),
   logOut: document.querySelector('.exit'),
@@ -18,9 +17,9 @@ const refs = {
   toLogIn: document.querySelector('#to-login'),
   modalSignIn: document.querySelector('#auth'),
   signInForm: document.querySelector('#auth-form'),
-  toSignUp : document.querySelector('#to-signup'),
+  toSignUp: document.querySelector('#to-signup'),
   modalSignUp: document.querySelector('#reg'),
   signUpForm: document.querySelector('#reg-form'),
-    
+  toggle: document.querySelector('#theme-switch-toggle'),
 };
 export default refs;

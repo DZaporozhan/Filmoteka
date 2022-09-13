@@ -1,58 +1,124 @@
+// .header {
+//   position: relative;
+//   background-repeat: no-repeat;
+//   margin: 0 auto;
+//   background-position: center;
+//   background-size: cover;
+//   background-image: linear-gradient(
+//       to right,
+//       rgba(0, 0, 0, 0.56),
+//       rgba(0, 0, 0, 0.56)
+//     ),
+//     url(../images/heder_mob-min.jpg);
+//   @media (min-device-pixel-ratio: 2),
+//     (min-resolution: 192dpi),
+//     (min-resolution: 2dppx) {
+//     background-image: linear-gradient(
+//         to right,
+//         rgba(0, 0, 0, 0.56),
+//         rgba(0, 0, 0, 0.56)
+//       ),
+//       url(../images/header_mob@2x-min.jpg);
+//   }
+
+//   @media screen and (min-width: $tablet) {
+//     background-image: linear-gradient(
+//         to right,
+//         rgba(0, 0, 0, 0.56),
+//         rgba(0, 0, 0, 0.56)
+//       ),
+//       url(../images/heder_tab-min.jpg);
+//     @media (min-device-pixel-ratio: 2),
+//       (min-resolution: 192dpi),
+//       (min-resolution: 2dppx) {
+//       background-image: linear-gradient(
+//           to right,
+//           rgba(0, 0, 0, 0.56),
+//           rgba(0, 0, 0, 0.56)
+//         ),
+//         url(../images/heder_tab@2x-min.jpg);
+//     }
+//   }
+//   @media screen and (min-width: $desktop) {
+//     max-width: 1280px;
+//     background-image: linear-gradient(
+//         to right,
+//         rgba(0, 0, 0, 0.56),
+//         rgba(0, 0, 0, 0.56)
+//       ),
+//       url(../images/header-min.jpg);
+//     @media (min-device-pixel-ratio: 2),
+//       (min-resolution: 192dpi),
+//       (min-resolution: 2dppx) {
+//       background-image: linear-gradient(
+//           to right,
+//           rgba(0, 0, 0, 0.56),
+//           rgba(0, 0, 0, 0.56)
+//         ),
+//         url(../images/header@2x-min.jpg);
+//     }
+//   }
+// }
 .header {
+  position: relative;
+  height: 230px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0, 0, 0, 0.56);
+  background-image: linear-gradient(
+      rgba(47, 48, 58, 0.4),
+      rgba(47, 48, 58, 0.4)
+    ),
+    url(../images/header_mob-min.jpg);
   background-repeat: no-repeat;
-  margin: 0 auto;
   background-position: center;
   background-size: cover;
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.56),
-      rgba(0, 0, 0, 0.56)
-    ),
-    url(../images/heder_mob-min.jpg);
+
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
       ),
       url(../images/header_mob@2x-min.jpg);
   }
 
-  @media screen and (min-width: $tablet) {
+  @include tablet {
+    height: 219px;
     background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
       ),
-      url(../images/heder_tab-min.jpg);
+      url(../images/header_tab-min.jpg);
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.56),
-          rgba(0, 0, 0, 0.56)
+          rgba(47, 48, 58, 0.4),
+          rgba(47, 48, 58, 0.4)
         ),
-        url(../images/heder_tab@2x-min.jpg);
+        url(../images/header_tab@2x-min.jpg);
     }
   }
-  @media screen and (min-width: $desktop) {
-    max-width: 1280px;
+
+  @include desktop {
+    max-width: 1600px;
+    height: 216px;
+
     background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
       ),
       url(../images/header-min.jpg);
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.56),
-          rgba(0, 0, 0, 0.56)
+          rgba(47, 48, 58, 0.4),
+          rgba(47, 48, 58, 0.4)
         ),
         url(../images/header@2x-min.jpg);
     }
@@ -68,7 +134,7 @@
 
 .logo {
   margin-top: 40px;
-  margin-left: 20px;
+  // margin-left: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,15 +146,14 @@
 }
 
 .logo__text {
-  color: $secondary-text-color;
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 1.17;
-  @media screen and (max-width: $tablet) {
-    display: none;
+  display: none;
+  @include tablet {
+    display: inline-block;
+    font-family: $main-font-family;
+    @include font(30, 500, 1.16);
+    color: $secondary-text-color;
   }
 }
-
 .nav {
   display: flex;
   margin-top: 40px;
@@ -97,10 +162,6 @@
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-right: 20px;
-  @media screen and (min-width: $tablet) {
-    margin-right: 40px;
-  }
 }
 
 .nav__item {
@@ -109,7 +170,7 @@
 }
 
 .nav__item:not(:last-child) {
-  margin-right: 20px;
+  margin-right: 39px;
 }
 
 .nav__btn-wrapper {
@@ -129,18 +190,26 @@
 }
 
 .nav__link {
-  opacity: 1;
-  font-weight: 500;
+  // opacity: 1;
+  // font-weight: 500;
+  // text-transform: uppercase;
+  // color: $secondary-text-color;
+
+  // font-weight: 500;
+  // line-height: 1.17;
+
+  // display: flex;
+  // align-items: center;
+  // text-align: center;
+  // text-transform: uppercase;
+  // &:hover,
+  // &:focus {
+  //   color: $trird-text-color;
+  //   transition: $transition;
+  // }
   text-transform: uppercase;
+  @include font(12, 500, 1.16);
   color: $secondary-text-color;
-
-  font-weight: 500;
-  line-height: 1.17;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  text-transform: uppercase;
   &:hover,
   &:focus {
     color: $trird-text-color;
@@ -179,9 +248,9 @@
   color: $secondary-text-color;
 }
 
-.header__container {
-  height: 216px;
-}
+// .header__container {
+//   height: 216px;
+// }
 .input__search-btn {
   position: absolute;
   content: '';
@@ -232,19 +301,6 @@ body.dark {
   background-color: $fourth-text-color;
 }
 
-.toggle {
-  width: 30px;
-  height: 30px;
-  background-color: #eee8e1;
-  position: absolute;
-  top: 10px;
-  right: 24px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
 body.dark .toggle {
   // background-color: #464646;
   background-color: $fourth-text-color;
@@ -263,6 +319,7 @@ body.dark .toggle i {
 }
 
 body.dark .footer {
-  background-color: $fourth-text-color;
+  // background-color: $fourth-text-color;
+  background-color: #443f3f;
   color: $secondary-text-color;
 }
