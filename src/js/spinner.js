@@ -6,6 +6,7 @@ function onSpinnerEnabled() {
   refs.spinnerEl.classList.add('visually-hidden');
   setTimeout(() => {
     refs.spinnerEl.remove();
+    window.removeEventListener('load', onSpinnerEnabled);
   }, 600);
 }
 
