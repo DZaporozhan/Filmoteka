@@ -1,0 +1,149 @@
+body {
+  background-color: aliceblue;
+}
+.authorization > .backdrop {
+  //   width: 320px;
+  //   background-color: rgba(0, 0, 0, 0.568);
+  background: rgba(0, 0, 0, 0.56);
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+}
+.auth {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+// .reg {
+//   height: 100%;
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
+.auth-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 42px;
+  /* or 233% */
+
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+  margin-bottom: 100px;
+}
+.auth-text {
+  max-width: 187px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 24px;
+  /* or 200% */
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+.auth-form > label > input::placeholder {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  /* identical to box height, or 200% */
+
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+}
+
+.auth-input {
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  width: 100%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  /* identical to box height, or 200% */
+
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+  background-color: transparent;
+  margin-bottom: 30px;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+.auth-submit {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 42px;
+  /* identical to box height, or 262% */
+
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin-top: 80px;
+  padding: 1px 84px;
+  background-color: transparent;
+  border: 3px solid #ffffff;
+  filter: drop-shadow(2px 3px 9px rgba(0, 0, 0, 0.25));
+  border-radius: 5px;
+}
+.auth-question {
+  // margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 24px;
+  /* identical to box height, or 218% */
+
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+}
+.auth-link {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 24px;
+  /* identical to box height, or 218% */
+
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+}
+
+.auth-wrap--top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.auth-wrap--top > #reg-title {
+  margin-bottom: 60px;
+}
+.auth-wrap--top > #reg-text {
+  margin-bottom: 30px;
+}
+.auth-wrap--bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#auth {
+  position: absolute;
+}
+
+#reg {
+  position: absolute;
+}
+
+.open-auth {
+  background-color: transparent;
+}
+.exit {
+  background-color: transparent;
+}
+
+.auth-icon {
+  fill: #ffffff;
+}

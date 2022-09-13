@@ -1,4 +1,4 @@
-import './js/markupModalMovie';
+import './js/movieModal';
 import './js/serchMovies';
 import './js/modalFooter';
 import './js/trendingMovies';
@@ -7,3 +7,4 @@ import './js/theme';
 import './js/onClickWatchTrailer';
 import './js/scroll-up';
 import './js/pagination';
+import './js/userAuth/usersForms';
