@@ -44,6 +44,9 @@ export default class NewApiServise {
   resetPage() {
     this.page = 1;
   }
+  setPage(newPage) {
+    this.page = newPage;
+  }
 
   incrementPage() {
     return (this.page += 1);
