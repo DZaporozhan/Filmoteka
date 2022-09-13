@@ -8,5 +8,19 @@ const refs = {
   spinnerEl: document.querySelector('.backdrop-spinner'),
   backdropFilmRef: document.querySelector('.modal-film__backdrop'),
   body: document.querySelector('body'),
+
+
+  openAuth: document.querySelector('.open-auth'),
+  // backdrop: document.querySelector('.backdrop'),
+  logOut: document.querySelector('.exit'),
+  library: document.querySelector('#library'),
+
+  toLogIn: document.querySelector('#to-login'),
+  modalSignIn: document.querySelector('#auth'),
+  signInForm: document.querySelector('#auth-form'),
+  toSignUp : document.querySelector('#to-signup'),
+  modalSignUp: document.querySelector('#reg'),
+  signUpForm: document.querySelector('#reg-form'),
+    
 };
 export default refs;
