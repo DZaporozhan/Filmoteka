@@ -63,18 +63,15 @@ function createModalFilmInfoMarkup({
         />
       </svg>
     </button>
-  <div class="modal-film__img">
-      <div class="modal-film__poster">
-      <img
-        src="${
-          poster_path ? `${base_url}${size}${poster_path}` : imgPlaceholder
-        }"
-        alt="${title}"
-        class="modal-film__poster"
-        loading="lazy" 
-      />
-      </div>
-
+  <div div class="modal-film__img">
+    <div class="modal-film__wrapper">
+    <img
+      src="${poster_path ? `${base_url}${size}${poster_path}` : imgPlaceholder}"
+      alt="${title}"
+      class="modal-film__poster"
+      loading="lazy" 
+    />
+    </div>
     <div class='modal__trailer-wrapper'>
       <button class='modal__trailer-btn js-trailer-btn'
       type='button'
@@ -83,46 +80,43 @@ function createModalFilmInfoMarkup({
       watch trailer
       </button>
     </div> 
-
-    </div>
-    <div class="modal-film__description">
-    <h2 class="modal-film__title">${title}</h2>
-    <table class="modal-film__table">
-      <tr class="modal-film__table-row">
-        <td class="modal-film__table-description">Vote / Votes</td>
-        <td class="modal-film__table-value">
-          <span class="modal-film__table-vote">${vote_average}</span
-          ><span class="modal-film__table-slash"> / </span
-          ><span class="modal-film__table-votes">${vote_count}</span>
-        </td>
-      </tr>
-      <tr class="modal-film__table-row">
-        <td class="modal-film__table-description">Popularity</td>
-        <td class="modal-film__table-value popularity-value">${popularity}</td>
-      </tr>
-      <tr class="modal-film__table-row">
-        <td class="modal-film__table-description">Original Title</td>
-        <td class="modal-film__table-value">${original_title}</td>
-      </tr>
-      <tr class="modal-film__table-row">
-        <td class="modal-film__table-description">Genre</td>
-        <td class="modal-film__table-value">${genresList}</td>
-      </tr>
-    </table>
-    <h3 class="modal-film__about">About</h3>
-    <p class="modal-film__abot-text">${overview}
-    </p>
-    <ul class="modal-film__container-btn">
-      <li>
-        <button class="modal-btn modal-film_btn-watched" type="submit">add to watched</button>
-      </li>
-      <li>
-        <button class="modal-btn modal-film_btn-queue" type="submit">add to queue</button>
-      </li>
-    </ul>
-    </div>
-</div>
-</div>`;
+  </div>
+  <div class="modal-film__description">
+  <h2 class="modal-film__title">${title}</h2>
+  <ul class="modal-film__table">
+    <li class="modal-film__table-row">
+      <p class="modal-film__table-description">Vote / Votes</p>
+      <p class="modal-film__table-value">
+        <span class="modal-film__table-vote">${vote_average}</span
+        ><span class="modal-film__table-slash"> / </span
+        ><span class="modal-film__table-votes">${vote_count}</span>
+      </p>
+    </li>
+    <li class="modal-film__table-row">
+      <p class="modal-film__table-description">Popularity</p>
+      <p class="modal-film__table-value popularity-value">${popularity}</p>
+    </li>
+    <li class="modal-film__table-row">
+      <p class="modal-film__table-description">Original Title</p>
+      <p class="modal-film__table-value">${original_title}</p>
+    </li>
+    <li class="modal-film__table-row">
+      <p class="modal-film__table-description">Genre</p>
+      <p class="modal-film__table-value">${genresList}</p>
+    </li>
+  </ul>
+  <h3 class="modal-film__about">About</h3>
+  <p class="modal-film__abot-text">${overview}
+  </p>
+  <ul class="modal-film__container-btn">
+    <li>
+      <button class="modal-btn modal-film_btn-watched" type="submit">add to watched</button>
+    </li>
+    <li>
+      <button class="modal-btn modal-film_btn-queue" type="submit">add to queue</button>
+    </li>
+  </ul>
+  </div>`;
 
   //trailer
   const trailerBtn = document.querySelector('.js-trailer-btn');

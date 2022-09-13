@@ -83,25 +83,29 @@
   }
 }
 
-.modal-film__poster {
-  display: block;
+.modal-film__wrapper {
   margin-left: auto;
   margin-right: auto;
   width: 240px;
   height: 357px;
   border-radius: 5px;
-  object-fit: contain;
 
   @include tablet {
     width: 264px;
     height: 373.55px;
-    object-fit: cover;
   }
 
   @include desktop-modal {
     width: 375px;
     height: 478px;
   }
+}
+
+.modal-film__poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .modal-film__title {
