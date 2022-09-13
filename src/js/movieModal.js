@@ -5,14 +5,18 @@ import imgPlaceholder from '/src/images/movie-time.jpg';
 
 refs.mainList.addEventListener('click', onMovieCLick);
 
-function onMovieCLick(event) {
+const filmData = []; //
+let filmId = 0; // стоврив пустий об'єкт для данних про фільм
+
+export function onMovieCLick(event) {
   refs.modalFilmInfoRef.innerHTML = '';
   const isCard = event.target.closest('.movieCard');
   if (!isCard) {
     return;
   }
   const movieId = isCard.getAttribute('data');
-  console.log(movieId);
+  // console.log(movieId);
+  filmId = movieId;
   openModal();
 
   moviesByID(movieId);
@@ -23,9 +27,10 @@ function onMovieCLick(event) {
 
 const newsApiServise = new NewApiServise();
 
-function moviesByID(movieID) {
+export function moviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => {
     createModalFilmInfoMarkup(data);
+    onMoviesInfo(data); // прокидую в функцію данні про фільм
   });
 }
 
@@ -164,3 +169,10 @@ function onCloseTrailer() {
   const watchTrailerLightbox = document.querySelector('.basicLightbox');
   watchTrailerLightbox.remove();
 }
+export function onMoviesInfo(data) {
+  // роблю деструктуризацію назви фільму з об'єкту данних, тобі треба достати всі данні що треба для рендеру про фільм
+  // console.log(title);
+  filmData.push(data); // записую назву фільму в пустий об'єкт
+}
+
+export { filmId, filmData };

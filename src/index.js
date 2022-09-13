@@ -7,4 +7,6 @@ import './js/theme';
 import './js/onClickWatchTrailer';
 import './js/scroll-up';
 import './js/pagination';
-import './js/userAuth/usersForms';
+import './js/seveQueue';
+import './js/storageServise';
+// import './js/userAuth/usersForms';
