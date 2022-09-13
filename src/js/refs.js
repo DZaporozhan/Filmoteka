@@ -1,4 +1,4 @@
-export default refs = {
+const refs = {
   searchForm: document.querySelector('#search-form'),
   mainList: document.querySelector('.movieList'),
   warningOnSearch: document.querySelector('#js-input-error'),
@@ -8,6 +8,20 @@ export default refs = {
   spinnerEl: document.querySelector('.backdrop-spinner'),
   backdropFilmRef: document.querySelector('.modal-film__backdrop'),
   body: document.querySelector('body'),
+
+  openAuth: document.querySelector('.open-auth'),
+  // backdrop: document.querySelector('.backdrop'),
+  logOut: document.querySelector('.exit'),
+  library: document.querySelector('#library'),
+
+  toLogIn: document.querySelector('#to-login'),
+  modalSignIn: document.querySelector('#auth'),
+  signInForm: document.querySelector('#auth-form'),
+  toSignUp: document.querySelector('#to-signup'),
+  modalSignUp: document.querySelector('#reg'),
+  signUpForm: document.querySelector('#reg-form'),
+  toggle: document.querySelector('#theme-switch-toggle'),
   modalQueueBtn: document.querySelector('.modal-film_btn-queue'),
   modalWatchedBtn: document.querySelector('.modal-film_btn-watched'),
 };
+export default refs;

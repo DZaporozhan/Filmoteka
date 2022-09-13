@@ -1,10 +1,19 @@
-const spinnerEl = document.querySelector('.backdrop-spinner');
+import refs from './refs';
+
+window.addEventListener('load', onSpinnerEnabled);
 
 function onSpinnerEnabled() {
-  return spinnerEl.classList.remove('visually-hidden');
-}
-function onSpinnerDisabled() {
-  return spinnerEl.classList.add('visually-hidden');
+  refs.spinnerEl.classList.add('visually-hidden');
+  setTimeout(() => {
+    refs.spinnerEl.remove();
+    window.removeEventListener('load', onSpinnerEnabled);
+  }, 600);
 }
 
-export { onSpinnerEnabled, onSpinnerDisabled };
+// function onSpinnerEnabled() {
+//   return refs.spinnerEl.classList.remove('visually-hidden');
+// }
+// function onSpinnerDisabled() {
+//   return refs.spinnerEl.classList.add('visually-hidden');
+// }
+// export { onSpinnerEnabled, onSpinnerDisabled };

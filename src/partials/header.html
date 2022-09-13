@@ -2,9 +2,15 @@
   <div class="header__container container">
     <div class="header__wrapper">
       <a class="logo" href="./index.html">
-        <svg class="logo__icon" width="24px" height="24px">
-          <use href="./images/symbol-defs.svg#icon-film"></use>
-        </svg>
+        <div class="header__logo">
+          <img
+            class="header__logo--icon"
+            src="/src/images/logo.png"
+            alt=""
+            width="24"
+            height="24"
+          />
+        </div>
         <span class="logo__text">Filmoteka</span>
       </a>
       <nav class="nav">
@@ -12,8 +18,22 @@
           <li class="nav__item active">
             <a class="nav__link" href="index.html"> home </a>
           </li>
-          <li class="nav__item">
-            <a class="nav__link" href="./library.html"> my library </a>
+          <li class="nav__item hidden-item" id="library">
+            <a class="nav__link" href="library.html"> my library </a>
+          </li>
+          <li>
+            <button type="button" class="open-auth">
+              <svg class="auth-icon" width="20" height="20">
+                <use href="/src/images/symbol-defs.svg#icon-closed"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="exit hidden-item">
+              <svg class="auth-icon" width="20" height="20">
+                <use href="/src/images/symbol-defs.svg#icon-open"></use>
+              </svg>
+            </button>
           </li>
         </ul>
       </nav>
@@ -34,6 +54,15 @@
         </button>
       </form>
     </div>
+
     <p class="input__error" id="js-input-error"></p>
   </div>
+  <label class="form-switch">
+    <input type="checkbox" id="theme-switch-toggle" />
+    <i></i>
+
+    <svg class="theme-switch__icon" aria-label="moon">
+      <use href="./images/symbol-defs.svg#moon"></use>
+    </svg>
+  </label>
 </header>

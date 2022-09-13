@@ -1,39 +1,382 @@
-.backdrop__container{
-    position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        background-color: #fff;
-        border-radius: 5px;
-        width: 100%;
-        height: 100vh;
+.backdrop__container {
+  position: absolute;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  height: 100vh;
 
-    @media screen and(min-width: 320px) {
-                width: 320;
-                height: 500px;
-            }
-       
-    @media screen and(min-width: 768px) {
-                width: 600px;
-                height: 500px;
-            }
-        
-    @media screen and(min-width: 1200px) {
-                width: 900px;
-                height: 600px;
-            }
+  @media screen and(min-width: 320px) {
+    top: 1500px;
+    width: 320;
+    height: 2500px;
+    background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
+  }
+  //
+  @media screen and(min-width: 768px) {
+    top: 700px;
+    width: 600px;
+    height: 900px;
+    background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
+  }
+
+  @media screen and(min-width: 1200px) {
+    top: 400px;
+    width: 1000px;
+    height: 400px;
+    background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
+    background-size: cover;
+  }
 }
 .backdrop__button {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px 25px;
-    margin-bottom: 10px;
-    border: transparent;
-    border-radius: 4px;
-    background-color:coral;
-    cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px 25px;
+  margin-bottom: 10px;
+  border: transparent;
+  border-radius: 4px;
+  background-color: coral;
+  cursor: pointer;
 }
-.backdrop__title{
-   text-align: center;
+.backdrop__title {
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+// Dimon//
+/* 3D Slideshow */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// html,
+// body { overflow: hidden;
+//   max-width: 100%;
+//   overflow-x: hidden;
+//   overflow-y: visible;
+//   background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
+//   background-size: cover;
+//   background-color: #b1e4e2;
+// }
+
+#slideshow {
+  margin: -50 auto;
+  padding-top: 0px;
+  height: 380px;
+  width: 100%;
+  /* background: url(https://goit.ua/wp-content/themes/2/images/people_space.png); */
+  box-sizing: border-box;
+}
+
+.slideshow-title {
+  font-family: 'Allerta Stencil';
+  font-size: 62px;
+  color: #fff;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 25%;
+  letter-spacing: 3px;
+  font-weight: 300;
+}
+
+.sub-heading {
+  padding-top: 50px;
+  font-size: 18px;
+}
+.sub-heading-two {
+  font-size: 15px;
+}
+.sub-heading-three {
+  font-size: 13px;
+}
+.sub-heading-four {
+  font-size: 11px;
+}
+.sub-heading-five {
+  font-size: 9px;
+}
+.sub-heading-six {
+  font-size: 7px;
+}
+.sub-heading-seven {
+  font-size: 5px;
+}
+.sub-heading-eight {
+  font-size: 3px;
+}
+.sub-heading-nine {
+  font-size: 1px;
+}
+
+.entire-content {
+  margin: auto;
+  width: 50px; //радиус крутилки
+  perspective: 1000px;
+  position: relative;
+  padding-top: 60px;
+}
+
+.content-carrousel {
+  width: 100%;
+  position: absolute;
+  float: right;
+  animation: rotar 15s infinite linear;
+  transform-style: preserve-3d;
+}
+
+.content-carrousel:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.content-carrousel figure {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #3b444b;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 5%;
+}
+.content-carrousel figure-1 {
+  width: 155px;
+  height: 155px;
+  border: 1px solid #3b444b;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 100%;
+}
+.content-carrousel figure:nth-child(1) {
+  transform: rotateY(0deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(2) {
+  transform: rotateY(30deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(3) {
+  transform: rotateY(60deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(4) {
+  transform: rotateY(90deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(5) {
+  transform: rotateY(120deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(6) {
+  transform: rotateY(150deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(7) {
+  transform: rotateY(180deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(8) {
+  transform: rotateY(210deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(9) {
+  transform: rotateY(240deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(10) {
+  transform: rotateY(270deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(11) {
+  transform: rotateY(300deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(12) {
+  transform: rotateY(330deg) translateZ(300px);
+}
+.content-carrousel figure:nth-child(13) {
+  transform: rotateY(360deg) translateZ(300px);
+}
+
+.shadow {
+  position: absolute;
+  box-shadow: 0px 0px 20px 0px #000;
+  border-radius: 1px;
+}
+.shadow-1 {
+  position: absolute;
+  box-shadow: 0px 0px 20px 0px #000;
+  border-radius: 100%;
+}
+
+.shadow_goit {
+  position: absolute;
+  box-shadow: 0px 0px 20px 0px #000;
+  border-radius: 100%;
+}
+
+.content-carrousel img {
+  image-rendering: auto;
+  transition: all 300ms;
+  width: 100%;
+  height: 100%;
+}
+
+.content-carrousel img:hover {
+  transform: scale(1.2);
+  transition: all 300ms;
+}
+
+@keyframes rotar {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+.team-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 20px;
+
+  width: calc((100% - 80px) / 1);
+
+  @media screen and (min-width: 720px) {
+    width: calc((100% - 160px) / 1);
+  }
+
+  @media screen and (min-width: 1080px) {
+    margin: 20px;
+
+    width: calc((100% - 240px) / 6);
+  }
+}
+/* =========== */
+.basicLightbox {
+  overflow: scroll;
+}
+
+.team-wrapper {
+  margin: -20px;
+  margin-left: 0px;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  //   @media screen and (max-width: 779px) {
+  //     margin-top: 70px;
+  //   }
+
+  //   width: 240px;
+  //   /*
+  //     background-color: $white; */
+  //   border-radius: 15px;
+
+  //   @media screen and (min-width: 780px) {
+  //     width: 600px;
+
+  //     border-radius: 25px;
+  //   }
+
+  //   @media screen and (min-width: 1080px) {
+  //     margin: -30px;
+
+  //     width: 800px;
+  //   }
+}
+
+.team-card {
+  @media screen and (min-width: 768px) {
+    flex-basis: calc(100% / 3 - 30px);
+    width: calc((100% - 90px) / 3);
+  }
+  @media screen and (min-width: 1200px) {
+    flex-basis: calc(100% / 6 - 30px);
+    width: calc((100% - 90px) / 4);
+  }
+
+  margin-left: 0px;
+  margin-bottom: 0px;
+  justify-content: center;
+  //   position: relative;
+
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+
+  //   margin: 20px;
+
+  //   width: calc((100% - 80px) / 2);
+
+  //   @media screen and (min-width: 1080px) {
+  //     width: calc((100% - 160px) / 4);
+  //   }
+
+  //   @media screen and (min-width: 1080px) {
+  //     margin: 30px;
+
+  //     width: calc((100% - 240px) / 4);
+  //   }
+}
+
+.team-image {
+  margin-bottom: 10px;
+  @media screen and (min-width: 1200px) {
+    width: 75px;
+    height: 75px;
+  }
+
+  width: 75px;
+  height: 75px;
+
+  border-radius: 100%;
+  box-shadow: 5px 5px 11px -2px #000;
+}
+
+.team-name {
+  margin-bottom: 5px;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+.team-role {
+  font-family: 'Roboto', sans-serif;
+  color: #ff6b08;
+
+  @media screen and (max-width: 719px) {
+    font-size: 14px;
+  }
+
+  color: #ff6b08;
+}
+
+.team-git {
+  //   position: absolute;
+  width: 10;
+  height: 10;
+  top: 55px;
+  right: 10px;
+  padding-top: 5px;
+
+  @media screen and (min-width: 720px) {
+    top: 100px;
+  }
+
+  @media screen and (min-width: 1080px) {
+    top: 120px;
+  }
+
+  transform: scale(1);
+  //   @include transition(transform);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
+  }
+}
+
+// footer
+
+.team-modal {
+  text-decoration: underline;
+
+  cursor: pointer;
 }

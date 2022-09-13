@@ -9,7 +9,7 @@ export default class NewApiServise {
 
   async getTrendingMovies() {
     try {
-      const url = `https://api.themoviedb.org/3/trending/movie/day?${this.key}`;
+      const url = `https://api.themoviedb.org/3/trending/movie/day?${this.key}&page=${this.page}`;
 
       const response = await axios.get(url);
 
@@ -40,17 +40,23 @@ export default class NewApiServise {
       console.log(error);
     }
   }
-  //   async retrieveGenreList() {
-  //     const genreList = {};
-  //     const { data } = await axios.get(
-  //       `https://api.themoviedb.org/3/genre/movie/list?${this.key}&language=en-US`
-  //     );
-  //     data.genres.forEach(genre => (genreList[genre['id']] = genre['name']));
-  //     return genreList;
-  //   }
 
   resetPage() {
     this.page = 1;
+  }
+  setPage(newPage) {
+    this.page = newPage;
+  }
+
+  incrementPage() {
+    return (this.page += 1);
+  }
+
+  decrementPage() {
+    if (this.page === 1) {
+      return;
+    }
+    return (this.page -= 1);
   }
 
   get query() {
