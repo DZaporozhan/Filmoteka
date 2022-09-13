@@ -1,4 +1,4 @@
-import './js/markupModalMovie';
+import './js/movieModal';
 import './js/serchMovies';
 import './js/modalFooter';
 import './js/trendingMovies';

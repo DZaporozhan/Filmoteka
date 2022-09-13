@@ -1,21 +1,9 @@
 import NewApiServise from './api-servise';
 import refs from './refs';
 import watchTrailer from './onClickWatchTrailer';
-
-import { createMovieCard } from './cardTemplates';
-
-const noPosterImg =
-  'https://freedesignfile.com/upload/2014/07/Movie-time-design-elements-vector-backgrounds-01.jpg';
+import imgPlaceholder from '/src/images/movie-time.jpg';
 
 refs.mainList.addEventListener('click', onMovieCLick);
-
-const newsApiServise = new NewApiServise();
-
-function moviesByID(movieID) {
-  newsApiServise.getMoviesByID(movieID).then(data => {
-    createModalFilmInfoMarkup(data);
-  });
-}
 
 function onMovieCLick(event) {
   refs.modalFilmInfoRef.innerHTML = '';
@@ -31,6 +19,20 @@ function onMovieCLick(event) {
 
   document.addEventListener('keydown', onEscClose);
   document.addEventListener('click', onClickClose);
+}
+
+const newsApiServise = new NewApiServise();
+
+function moviesByID(movieID) {
+  newsApiServise.getMoviesByID(movieID).then(data => {
+    createModalFilmInfoMarkup(data);
+  });
+}
+
+function openModal() {
+  refs.backdropFilmRef.classList.remove('is-hidden');
+  refs.modalFilmInfoRef.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
 }
 
 function createModalFilmInfoMarkup({
@@ -62,29 +64,42 @@ function createModalFilmInfoMarkup({
   <div class="modal-film__img">
       <picture class="modal-film__poster">
       <source
-          srcset="${poster_path} === null ? noPosterImg :
-            https://image.tmdb.org/t/p/original/${poster_path} 1x,
-            https://image.tmdb.org/t/p/original/${poster_path} 2x
+          srcset="${
+            poster_path
+              ? `https://image.tmdb.org/t/p/original/${poster_path} 1x,
+            https://image.tmdb.org/t/p/original/${poster_path} 2x`
+              : imgPlaceholder
+          }
           "
           media="(min-width: 1024px)"
         />
       <source
-          srcset="${poster_path} === null ? noPosterImg :
-            https://image.tmdb.org/t/p/w780/${poster_path} 1x,
-            https://image.tmdb.org/t/p/w780/${poster_path} 2x
+          srcset="${
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500/${poster_path} 1x,
+            https://image.tmdb.org/t/p/w500/${poster_path} 2x`
+              : imgPlaceholder
+          }
           "
           media="(min-width: 768px)"
         />
       <source
-          srcset="${poster_path} === null ? noPosterImg :
-            https://image.tmdb.org/t/p/w342/${poster_path} 1x,
-            https://image.tmdb.org/t/p/w342/${poster_path} 2x
+          srcset="${
+            poster_path
+              ? `https://image.tmdb.org/t/p/w342/${poster_path} 1x,
+            https://image.tmdb.org/t/p/w342/${poster_path} 2x`
+              : imgPlaceholder
+          }
           "
           media="(min-width: 320px)"
         />
 
       <img
-        src="${poster_path} === null ? noPosterImg : https://image.tmdb.org/t/p/w500/${poster_path}"
+        src="${
+          poster_path
+            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+            : imgPlaceholder
+        }"
         alt="${title}"
         loading="lazy"
         class="modal-film__poster"
@@ -99,8 +114,6 @@ function createModalFilmInfoMarkup({
       watch trailer
       </button>
     </div> 
-
-
 
     </div>
     <div class="modal-film__description">
@@ -141,9 +154,9 @@ function createModalFilmInfoMarkup({
     </div>
 </div>
 </div>`;
-//}
+  //}
 
-//trailer
+  //trailer
   const trailerBtn = document.querySelector('.js-trailer-btn');
   trailerBtn.addEventListener('click', getMovieTrailerByIdName);
 }
@@ -165,12 +178,6 @@ function onClickClose(event) {
   }
 }
 
-function openModal() {
-  refs.backdropFilmRef.classList.remove('is-hidden');
-  refs.modalFilmInfoRef.classList.remove('is-hidden');
-  refs.body.classList.add('no-scroll');
-}
-
 function closeModal() {
   refs.backdropFilmRef.classList.add('is-hidden');
   refs.modalFilmInfoRef.classList.add('is-hidden');
@@ -189,14 +196,3 @@ function onCloseTrailer() {
   const watchTrailerLightbox = document.querySelector('.basicLightbox');
   watchTrailerLightbox.remove();
 }
-
-const body = document.querySelector('body');
-
-body.addEventListener('scroll', vfr);
-
-function vfr() {
-  const logo = document.querySelector('.header__logo');
-  logo.classList.add('is-hidden');
-}
-
-
