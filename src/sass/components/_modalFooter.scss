@@ -23,9 +23,9 @@
   }
 
   @media screen and(min-width: 1200px) {
-    top: 550px;
-    width: 900px;
-    height: 670px;
+    top: 400px;
+    width: 1000px;
+    height: 400px;
     background-image: url(https://st.depositphotos.com/3275449/4447/v/600/depositphotos_44476385-stock-illustration-the-national-symbol-of-the.jpg);
     background-size: cover;
   }
@@ -242,9 +242,9 @@
   }
 
   @media screen and (min-width: 1080px) {
-    margin: 30px;
+    margin: 20px;
 
-    width: calc((100% - 240px) / 5);
+    width: calc((100% - 240px) / 6);
   }
 }
 /* =========== */
@@ -288,7 +288,7 @@
     width: calc((100% - 90px) / 3);
   }
   @media screen and (min-width: 1200px) {
-    flex-basis: calc(100% / 5 - 30px);
+    flex-basis: calc(100% / 6 - 30px);
     width: calc((100% - 90px) / 4);
   }
 
@@ -318,9 +318,13 @@
 
 .team-image {
   margin-bottom: 10px;
+  @media screen and (min-width: 1200px) {
+    width: 75px;
+    height: 75px;
+  }
 
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
 
   border-radius: 100%;
   box-shadow: 5px 5px 11px -2px #000;
