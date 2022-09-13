@@ -8,4 +8,6 @@ export default refs = {
   spinnerEl: document.querySelector('.backdrop-spinner'),
   backdropFilmRef: document.querySelector('.modal-film__backdrop'),
   body: document.querySelector('body'),
+  modalQueueBtn: document.querySelector('.modal-film_btn-queue'),
+  modalWatchedBtn: document.querySelector('.modal-film_btn-watched'),
 };

@@ -1,7 +1,5 @@
 import NewApiServise from './api-servise';
 import refs from './refs';
-// import { getWatchedList } from './getWatchedList';
-// import { getQueueList } from './getQueueList';
 import { createMovieCard } from './cardTemplates';
 
 const noPosterImg =
@@ -11,13 +9,17 @@ refs.mainList.addEventListener('click', onMovieCLick);
 
 const newsApiServise = new NewApiServise();
 
-function moviesByID(movieID) {
+const filmData = []; // стоврив пустий об'єкт для данних про фільм
+let filmId = 0; // записав початуовий ід.
+
+export function moviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => {
     createModalFilmInfoMarkup(data);
+    onMoviesInfo(data); // прокидую в функцію данні про фільм
   });
 }
 
-function onMovieCLick(event) {
+export function onMovieCLick(event) {
   event.preventDefault();
   refs.modalFilmInfoRef.innerHTML = '';
   isCard = event.target.closest('.movieCard');
@@ -25,13 +27,15 @@ function onMovieCLick(event) {
     return;
   }
   movieId = isCard.getAttribute('data');
-  console.log(movieId);
+
   openModal();
 
   moviesByID(movieId);
 
   document.addEventListener('keydown', onEscClose);
   document.addEventListener('click', onClickClose);
+
+  // refs.modalFilmInfoRef.addEventListener('click', onWatchedBtnClick);
 }
 
 function createModalFilmInfoMarkup({
@@ -111,10 +115,10 @@ function createModalFilmInfoMarkup({
     </p>
     <ul class="modal-film__container-btn">
       <li>
-        <button class="modal-btn modal-film_btn-watched" type="submit">add to watched</button>
+        <button class="modal-btn modal-film_btn-watched" type="button">add to watched</button>
       </li>
       <li>
-        <button class="modal-btn modal-film_btn-queue" type="submit">add to queue</button>
+        <button class="modal-btn modal-film_btn-queue" type="button">add to queue</button>
       </li>
     </ul>
     </div>
@@ -151,3 +155,9 @@ function closeModal() {
   document.removeEventListener('click', onClickClose);
   document.removeEventListener('keydown', onEscClose);
 }
+
+export function onMoviesInfo(data) {
+  filmData.push(data); // записую об'єкт з данніми в пустий масив
+}
+
+export { movieId, filmData }; // єкспортую потрібні данні для lokal storage

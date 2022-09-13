@@ -5,6 +5,7 @@ import './js/api-servise';
 import './js/cardTemplates';
 import './js/serchMovies';
 import './js/modalFooter';
+import './js/localStorageApi';
 
 ///////////////////===SPINNER TEST ===//////////////////
 onSpinnerEnabled();
