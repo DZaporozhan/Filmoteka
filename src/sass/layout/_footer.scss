@@ -1,36 +1,46 @@
 .footer {
-    display: flex;
+    color: #545454;
+    background-color: #F7F7F7;
+    font: inherit;
+}
 
+.footer-container {
+    display: flex;
     text-align: center;
     flex-direction: column;
     justify-content: center;
-    font-weight: 400;
-    width: 100%;
-    height: 100px;
-    margin-top: 40px;
+
+    padding-top: 29px;
+    padding-bottom: 29px;
+    color: #545454;
+
+    @include font(14px, 400, 16px);
 
     @media screen and(min-width: 768px) {
-        width:768px;
-        height: 79px;
-        flex-direction: row;
-        align-items: center;
-        font-size: 16px;
-        line-height: 1.18;
-        margin-top: 60px;
-        
-        
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        @include font(16px, 400, 1.18);
     }
 
     @media screen and(min-width: 1280px) {
-        width: 1280px;
-        height: 77px;
-     
+        flex-direction: row;
+        align-items: baseline;
+        padding-top: 29px;
+        padding-bottom: 29px;
     }
-
-    color: #545454;
-    background-color: #F7F7F7;
 }
 
+.wrapper {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+
+    @media screen and(min-width: 768px) {
+        flex-direction: row;
+    }
+}
 
 .footer__rights {
     margin-bottom: 10px;
@@ -41,48 +51,39 @@
     }
 }
 
-.footer__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .footer__btn {
     color: inherit;
     background-color: transparent;
     border-bottom: 1px solid #545454;
     cursor: pointer;
-}
 
-.hide {
-    display: none;
-}
-.footer__link{
-    color:#545454 ;
-}
-.footer__credit-text{
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 16px;
-    align-items: center;
-    @media screen and(min-width: 1280px) {
-        font-size: 11px;
+
+    @include font(14px, 400, 16px);
+
+    @media screen and(min-width: 768px) {
+        @include font(16px, 400, 1.18);
+        margin-right: 5px;
     }
 }
 
-.footer_container{
-    margin-bottom: 10px;
-// margin-top: 10px;
-    @media screen and(min-width: 768px) {
-    display: flex;
+.footer__credit {
+    align-items: center;
+    @include font(10px, 400, 16px);
+    margin-top: 10px;
 
-    justify-content: center;}
- @media screen and(min-width: 1280px) {
-    // margin-top: 0;
- }
-}
-.footer-containers{
     @media screen and(min-width: 1280px) {
-    display: flex;
-    align-items: baseline;}
+        margin-top: 0;
+        margin-left: 5px;
+        @include font(16px, 400, 1.18);
+
+        &-span {
+            font-style: italic;
+        }
+
+    }
+}
+
+.footer__link {
+    color: #545454;
+    cursor: pointer;
 }
