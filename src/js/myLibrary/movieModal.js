@@ -131,13 +131,13 @@
 //   document.removeEventListener('keydown', onEscClose);
 // }
 
-// // function getMovieTrailerByIdName(e) {
-// //   const id = e.target.dataset.id;
-// //   const name = e.target.dataset.name;
-// //   new watchTrailer(id, name).showTrailer();
-// // }
+// function getMovieTrailerByIdName(e) {
+//   const id = e.target.dataset.id;
+//   const name = e.target.dataset.name;
+//   new watchTrailer(id, name).showTrailer();
+// }
 
-// // function onCloseTrailer() {
-// //   const watchTrailerLightbox = document.querySelector('.basicLightbox');
-// //   watchTrailerLightbox.remove();
-// // }
+// function onCloseTrailer() {
+//   const watchTrailerLightbox = document.querySelector('.basicLightbox');
+//   watchTrailerLightbox.remove();
+// }

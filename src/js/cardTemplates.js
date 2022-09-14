@@ -2,6 +2,7 @@
 import refs from './refs';
 import axios from 'axios';
 import { save, load } from './storageServise';
+import { onSpinnerDisabled, onSpinnerEnabled } from './spinner';
 
 const KEY = `api_key=6fe1e9d5fbaeb01db6cc1b91ad7172fe`;
 const basePosterUrl = 'https://image.tmdb.org/t/p/';
@@ -26,9 +27,11 @@ function generatePosterImgLink(poster_path) {
 
 async function retrieveGenreList() {
   try {
+    onSpinnerEnabled();
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/genre/movie/list?${KEY}&language=en-US`
     );
+    onSpinnerDisabled();
     data.genres.forEach(genre => (genreList[genre['id']] = genre['name']));
   } catch (error) {
     console.log(error.message);
@@ -55,7 +58,9 @@ async function setGenreListToLocalStorage() {
 }
 
 async function createMovieCard(filmInfo) {
+  onSpinnerEnabled();
   await setGenreListToLocalStorage();
+  onSpinnerDisabled();
   return filmInfo
     .map(
       ({
@@ -116,22 +121,11 @@ function createMovieCardFromLocalStorage(filmInfo) {
     )
     .join('');
 }
-
 function generateGenreListForCardFromLocalStorage(genres) {
   if (genres.length > 2) {
     return `${genres[0].name}, ${genres[1].name}, Other`;
   }
-  return genres.name.map().join(', ');
+  return genres.map(genre => genre.name).join(', ');
 }
-
-// function rateOn() {
-//   refs.movieRate.classList.remove('visually-hidden');
-// }
-
-// function rateOff() {
-//   refs.movieRate.classList.add('visually-hidden');
-// }
-
-// refs.movieRate = document.querySelector('.movieCard__rate');
 
 export { createMovieCard, createMovieCardFromLocalStorage };
