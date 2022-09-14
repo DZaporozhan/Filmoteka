@@ -5,7 +5,7 @@ import imgPlaceholder from '/src/images/movie-time.jpg';
 
 refs.mainList.addEventListener('click', onMovieCLick);
 
-function onMovieCLick(event) {
+export function onMovieCLick(event) {
   refs.modalFilmInfoRef.innerHTML = '';
   const isCard = event.target.closest('.movieCard');
   if (!isCard) {
@@ -23,9 +23,13 @@ function onMovieCLick(event) {
 
 const newsApiServise = new NewApiServise();
 
-function moviesByID(movieID) {
+const filmData = []; // стоврив пустий об'єкт для данних про фільм
+let filmId = 0; // записав початуовий ід.
+
+export function moviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => {
     createModalFilmInfoMarkup(data);
+    onMoviesInfo(data); // прокидую в функцію данні про фільм
   });
 }
 
@@ -87,7 +91,7 @@ function createModalFilmInfoMarkup({
     <li class="modal-film__table-row">
       <p class="modal-film__table-description">Vote / Votes</p>
       <p class="modal-film__table-value">
-        <span class="modal-film__table-vote">${vote_average}</span
+        <span class="modal-film__table-vote">${vote_average.toFixed(1)}</span
         ><span class="modal-film__table-slash"> / </span
         ><span class="modal-film__table-votes">${vote_count}</span>
       </p>
@@ -158,3 +162,9 @@ function onCloseTrailer() {
   const watchTrailerLightbox = document.querySelector('.basicLightbox');
   watchTrailerLightbox.remove();
 }
+
+export function onMoviesInfo(data) {
+  filmData.push(data); // записую об'єкт з данніми в пустий масив
+}
+
+export { movieId, filmData }; // єкспортую потрібні данні для lokal storage

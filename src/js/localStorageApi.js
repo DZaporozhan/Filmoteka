@@ -1,7 +1,7 @@
 import refs from './refs';
 // import NewApiServise from './api-servise';
 import { save, load, remove } from './storageServise';
-import { movieId, filmData } from './markupModalMovie';
+import { movieId, filmData } from './movieModal';
 
 refs.mainList.addEventListener('click', onModalClick); // слухаєм клік по списку фільмів
 
