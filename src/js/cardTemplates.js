@@ -86,6 +86,44 @@ async function createMovieCard(filmInfo) {
     .join('');
 }
 
+function createMovieCardFromLocalStorage(filmInfo) {
+  return filmInfo
+    .map(
+      ({
+        id,
+        title,
+        poster_path,
+        genres,
+        release_date,
+        vote_average,
+      }) => `<li class="movieCard" data="${id}">
+      <div class="movieCard__img-wrapper">
+      <img src="${generatePosterImgLink(poster_path)}"
+        alt="${title} movie poster"
+        loading="lazy"
+        class="movieCard__img"
+      />
+      </div>
+      <div class="movieCard__text">
+        <h2 class="movieCard__title">${title.toUpperCase()}</h2>
+        <p class="movieCard__info">${generateGenreListForCardFromLocalStorage(
+          genres
+        )} | ${new Date(release_date).getFullYear()}
+          <span class="movieCard__rate">${vote_average.toFixed(1)}</span></p>
+      </div>
+      </li>
+`
+    )
+    .join('');
+}
+
+function generateGenreListForCardFromLocalStorage(genres) {
+  if (genres.length > 2) {
+    return `${genres[0].name}, ${genres[1].name}, Other`;
+  }
+  return genres.name.map().join(', ');
+}
+
 // function rateOn() {
 //   refs.movieRate.classList.remove('visually-hidden');
 // }
@@ -96,4 +134,4 @@ async function createMovieCard(filmInfo) {
 
 // refs.movieRate = document.querySelector('.movieCard__rate');
 
-export { createMovieCard };
+export { createMovieCard, createMovieCardFromLocalStorage };
