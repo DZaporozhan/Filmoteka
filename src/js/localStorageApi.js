@@ -1,7 +1,9 @@
 import refs from './refs';
 import { save, load, remove } from './storageServise';
+import NewApiServise from './api-servise';
+// import { filmData } from './movieModal';
 
-import { filmData } from './movieModal';
+const newsApiServise = new NewApiServise();
 const KEYWATCH = 'watched';
 const KEYQUEUE = 'queue';
 
@@ -9,22 +11,34 @@ refs.mainList.addEventListener('click', onModalClick); // слухаєм клі�
 
 function onModalClick(e) {
   const modalEl = e.target.nodeName; // знаходжу на який елемент клікнули (нас цікавить img і p бо при клікі по ним відкривається модалка)
-
+  const isCard = e.target.closest('.movieCard');
+  const movieId = Number(isCard.getAttribute('data'));
+  onTakeId(movieId);
   if (modalEl === 'IMG' || modalEl === 'P') {
     refs.modalFilmInfoRef.addEventListener('click', onWatchedBtnClick);
     refs.modalFilmInfoRef.addEventListener('click', onQueueBtnClick);
+  }
+}
+const filmData = [];
+
+function onTakeId(id) {
+  newsApiServise.getMoviesByID(id).then(data => {
+    filmData.push(data);
+    console.log('onmodalclick', filmData);
+  });
+}
+
+function onWatchedBtnClick(e) {
+  if (e.target.className === 'modal-btn modal-film_btn-watched') {
+    savedCheck(filmData, KEYWATCH);
+    console.log('click on button ', filmData);
   }
 }
 
 function onQueueBtnClick(e) {
   if (e.target.className === 'modal-btn modal-film_btn-queue') {
     savedCheck(filmData, KEYQUEUE);
-  }
-}
-
-function onWatchedBtnClick(e) {
-  if (e.target.className === 'modal-btn modal-film_btn-watched') {
-    savedCheck(filmData, KEYWATCH);
+    console.log(filmData);
   }
 }
 

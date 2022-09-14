@@ -12,7 +12,6 @@ function onMovieCLick(event) {
     return;
   }
   const movieId = isCard.getAttribute('data');
-  console.log(movieId);
   openModal();
 
   moviesByID(movieId);
@@ -23,13 +22,13 @@ function onMovieCLick(event) {
 
 const newsApiServise = new NewApiServise();
 
-const filmData = []; // стоврив пустий об'єкт для данних про фільм
+// const filmData = []; // стоврив пустий об'єкт для данних про фільм
 // let filmId = 0; // записав початуовий ід.
 
 export function moviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => {
     createModalFilmInfoMarkup(data);
-    filmData.push(data);
+    // filmData.push(data);
   });
 }
 
@@ -114,10 +113,10 @@ function createModalFilmInfoMarkup({
   </p>
   <ul class="modal-film__container-btn">
     <li>
-      <button class="modal-btn modal-film_btn-watched" type="submit">add to watched</button>
+      <button class="modal-btn modal-film_btn-watched" type="button">add to watched</button>
     </li>
     <li>
-      <button class="modal-btn modal-film_btn-queue" type="submit">add to queue</button>
+      <button class="modal-btn modal-film_btn-queue" type="button">add to queue</button>
     </li>
   </ul>
   </div>`;
