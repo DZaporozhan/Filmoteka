@@ -28,7 +28,7 @@
   height: 15px;
   border-radius: 5px;
   padding: 8px 0 6px;
-  margin-left: 0;
+  margin-left: 10px;
   color: #333;
   font-size: 16px;
   font-weight: normal;
@@ -37,6 +37,13 @@
   vertical-align: middle;
   border: 1px solid #ddd;
   border-width: 1px 0;
+}
+@media screen and (max-width: 767px) {
+  .tui-pagination .tui-page-btn {
+    width: 20px !important;
+    font-size: 12px !important;
+    margin-left: 5px !important;
+  }
 }
 
 .tui-pagination .tui-page-btn:hover {
