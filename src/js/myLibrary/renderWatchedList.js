@@ -4,7 +4,7 @@ import { save, load, remove } from './storageServise';
 
 const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
-const 
+// const
 const watchedRef = document.querySelector('[data-action="watched"]');
 
 async function renderWatchedList() {
@@ -12,6 +12,8 @@ async function renderWatchedList() {
 
   const movieData = await load(WATCHED_KEY);
   console.log(movieData);
+  const list = createMovieCard(movieData);
+  refs.mainList.insertAdjacentHTML('beforeend', list);
 }
 
 watchedRef.addEventListener('click', renderWatchedList);
