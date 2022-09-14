@@ -1,34 +1,42 @@
-import NewApiServise from './api-servise';
-import refs from './refs';
-import watchTrailer from './onClickWatchTrailer';
+import refs from '../refs';
+import { load } from '../storageServise';
 import imgPlaceholder from '/src/images/movie-time.jpg';
+
+const WATCHED_KEY = 'watched';
+const QUEUE_KEY = 'queue';
+
+// const
+const queueRef = document.querySelector('[data-action="queue"]');
 
 refs.mainList.addEventListener('click', onMovieCLick);
 
-function onMovieCLick(event) {
-  refs.modalFilmInfoRef.innerHTML = '';
-  const isCard = event.target.closest('.movieCard');
-  if (!isCard) {
-    return;
+async function onMovieCLick(e) {
+  try {
+    const isCard = e.target.closest('.movieCard');
+    if (!isCard) {
+      return;
+    }
+    const filmId = isCard.getAttribute('data');
+    console.log(Number(filmId));
+
+    const movieData = await load(WATCHED_KEY);
+    console.log(load(WATCHED_KEY));
+
+    const movieId = movieData.find(movie => movie.id === Number(filmId));
+    console.log(movieId);
+    if (movieId) {
+      openModal();
+    }
+
+    const modal = createModalFilmMarkup(movieId);
+
+    refs.modalFilmInfoRef.innerHTML = modal;
+
+    document.addEventListener('keydown', onEscClose);
+    document.addEventListener('click', onClickClose);
+  } catch (error) {
+    console.log(error.message);
   }
-  const movieId = isCard.getAttribute('data');
-  openModal();
-
-  moviesByID(movieId);
-
-  document.addEventListener('keydown', onEscClose);
-  document.addEventListener('click', onClickClose);
-}
-
-const newsApiServise = new NewApiServise();
-
-export function moviesByID(movieID) {
-  newsApiServise.getMoviesByID(movieID).then(data => {
-    createModalFilmInfoMarkup(data);
-
-    // filmData.push(data);
-
-  });
 }
 
 function openModal() {
@@ -37,7 +45,7 @@ function openModal() {
   refs.body.classList.add('no-scroll');
 }
 
-function createModalFilmInfoMarkup({
+function createModalFilmMarkup({
   title,
   popularity,
   original_title,
@@ -51,7 +59,7 @@ function createModalFilmInfoMarkup({
   const base_url = 'https://image.tmdb.org/t/p/';
   const size = 'w500';
   const genresList = genres.map(genre => genre.name).join(', ');
-  refs.modalFilmInfoRef.innerHTML = `<button class="modal__btn-close">
+  return `<button class="modal__btn-close">
      <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14"
@@ -71,7 +79,7 @@ function createModalFilmInfoMarkup({
       src="${poster_path ? `${base_url}${size}${poster_path}` : imgPlaceholder}"
       alt="${title}"
       class="modal-film__poster"
-      loading="lazy" 
+      loading="lazy"
     />
     </div>
     <div class='modal__trailer-wrapper'>
@@ -81,7 +89,7 @@ function createModalFilmInfoMarkup({
       data-name='${original_title}'>
       watch trailer
       </button>
-    </div> 
+    </div>
   </div>
   <div class="modal-film__description">
   <h2 class="modal-film__title">${title}</h2>
@@ -110,27 +118,14 @@ function createModalFilmInfoMarkup({
   <h3 class="modal-film__about">About</h3>
   <p class="modal-film__abot-text">${overview}
   </p>
-  <ul class="modal-film__container-btn">
-    <li>
-
-      <button class="modal-btn modal-film_btn-watched" type="button">add to watched</button>
-    </li>
-    <li>
-      <button class="modal-btn modal-film_btn-queue" type="button">add to queue</button>
-
-    </li>
-  </ul>
+  
   </div>`;
-
-  //trailer
-  const trailerBtn = document.querySelector('.js-trailer-btn');
-  trailerBtn.addEventListener('click', getMovieTrailerByIdName);
 }
 
 function onEscClose(event) {
   if (event.key === 'Escape') {
     closeModal();
-    onCloseTrailer();
+    // onCloseTrailer();
   }
 }
 
@@ -152,15 +147,13 @@ function closeModal() {
   document.removeEventListener('keydown', onEscClose);
 }
 
-function getMovieTrailerByIdName(e) {
-  const id = e.target.dataset.id;
-  const name = e.target.dataset.name;
-  new watchTrailer(id, name).showTrailer();
-}
+// function getMovieTrailerByIdName(e) {
+//   const id = e.target.dataset.id;
+//   const name = e.target.dataset.name;
+//   new watchTrailer(id, name).showTrailer();
+// }
 
-function onCloseTrailer() {
-  const watchTrailerLightbox = document.querySelector('.basicLightbox');
-  watchTrailerLightbox.remove();
-}
-
-export { filmData }; // єкспортую потрібні данні для lokal storage
+// function onCloseTrailer() {
+//   const watchTrailerLightbox = document.querySelector('.basicLightbox');
+//   watchTrailerLightbox.remove();
+// }

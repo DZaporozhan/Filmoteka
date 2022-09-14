@@ -8,6 +8,7 @@ const KEYQUEUE = 'queue';
 
 refs.mainList.addEventListener('click', onModalClick); // слухаєм клік по списку фільмів
 
+refs.mainList.addEventListener('click', onModalClick); // слухаєм клік по списку фільмів
 function onModalClick(e) {
   const modalEl = e.target.nodeName; // знаходжу на який елемент клікнули (нас цікавить img і p бо при клікі по ним відкривається модалка)
   const isCard = e.target.closest('.movieCard');
@@ -16,6 +17,7 @@ function onModalClick(e) {
   if (modalEl === 'IMG' || modalEl === 'P') {
     refs.modalFilmInfoRef.addEventListener('click', onWatchedBtnClick);
     refs.modalFilmInfoRef.addEventListener('click', onQueueBtnClick);
+
   }
 }
 
@@ -29,6 +31,7 @@ function onTakeId(id) {
 
 function onWatchedBtnClick(e) {
   if (e.target.className === 'modal-btn modal-film_btn-watched') {
+
     const filmArr = [];
 
     filmArr.push(filmData);
@@ -59,6 +62,7 @@ function savedCheck(film, key) {
 
 function controlReapet(fullFilm, film, key) {
   let uniqFilm = [];
+
   for (let i = 0; i < fullFilm.length; i += 1) {
     let uniqFilmId = fullFilm[i];
     let searchUniqFilm = film.find(option => option.id === uniqFilmId);
