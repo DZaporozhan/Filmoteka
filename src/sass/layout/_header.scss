@@ -193,9 +193,10 @@
   color: $secondary-text-color;
 }
 
-// .header__container {
-//   height: 216px;
-// }
+.header__container {
+  height: 216px;
+  position: relative;
+}
 .input__search-btn {
   position: absolute;
   content: '';
