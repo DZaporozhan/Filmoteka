@@ -3,13 +3,7 @@
     <div class="header__wrapper">
       <a class="logo" href="./index.html">
         <div class="header__logo">
-          <img
-            class="header__logo--icon"
-            src="/src/images/logo.png"
-            alt=""
-            width="24"
-            height="24"
-          />
+          <img class="header__logo--icon" src="/src/images/logo.png" alt="" width="24" height="24" />
         </div>
         <span class="logo__text">Filmoteka</span>
       </a>
@@ -40,13 +34,7 @@
     </div>
     <div class="input">
       <form class="input__wraper form" id="search-form">
-        <input
-          class="header__input"
-          name="searchQuery"
-          type="text"
-          placeholder="Movie search"
-          autocomplete="off"
-        />
+        <input class="header__input" name="searchQuery" type="text" placeholder="Movie search" autocomplete="off" />
         <button class="input__search-btn" type="submit">
           <svg class="input__search-icon" width="12px" height="12px">
             <use href="./images/symbol-defs.svg#icon-search-2"></use>
@@ -56,13 +44,13 @@
     </div>
 
     <p class="input__error" id="js-input-error"></p>
+    <label class="form-switch">
+      <input type="checkbox" id="theme-switch-toggle" />
+      <i></i>
+      <svg class="theme-switch__icon" aria-label="moon">
+        <use href="./images/symbol-defs.svg#moon"></use>
+      </svg>
+    </label>
   </div>
-  <label class="form-switch">
-    <input type="checkbox" id="theme-switch-toggle" />
-    <i></i>
 
-    <svg class="theme-switch__icon" aria-label="moon">
-      <use href="./images/symbol-defs.svg#moon"></use>
-    </svg>
-  </label>
 </header>

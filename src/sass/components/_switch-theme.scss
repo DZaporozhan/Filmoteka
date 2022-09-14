@@ -4,8 +4,10 @@
   color: $main-bgcolor;
   -webkit-tap-highlight-color: transparent;
   position: absolute;
-  bottom: 13px;
-  right: 17px;
+  bottom: 10px;
+  right: 15px;
+  // margin-left: auto;
+  // margin-right: 5px;
 }
 .form-switch i {
   position: relative;
@@ -67,4 +69,42 @@
   width: 15px;
   margin-right: 8px;
   margin-left: 8px;
+}
+
+body.dark .modal__btn-close {
+  border-radius: 50%;
+}
+body.dark .tui-page-btn {
+  color: $secondary-text-color;
+}
+body.dark .tui-ico-next {
+  color: #fff;
+}
+body.dark {
+  background-color: $fourth-text-color;
+}
+
+body.dark .toggle {
+  background-color: $fourth-text-color;
+}
+body.dark .modal-film {
+  background-color: $fourth-text-color;
+}
+
+body.dark .toggle i {
+  color: #ddd;
+}
+
+body.dark .footer {
+  background-color: #443f3f;
+  color: $secondary-text-color;
+}
+body.dark p {
+  color: $secondary-text-color;
+}
+body.dark .footer__link {
+  color: $trird-text-color;
+}
+body.dark .movieCard__title {
+  color: $secondary-text-color;
 }

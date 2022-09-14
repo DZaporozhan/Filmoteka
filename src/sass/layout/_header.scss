@@ -1,64 +1,3 @@
-// .header {
-//   position: relative;
-//   background-repeat: no-repeat;
-//   margin: 0 auto;
-//   background-position: center;
-//   background-size: cover;
-//   background-image: linear-gradient(
-//       to right,
-//       rgba(0, 0, 0, 0.56),
-//       rgba(0, 0, 0, 0.56)
-//     ),
-//     url(../images/heder_mob-min.jpg);
-//   @media (min-device-pixel-ratio: 2),
-//     (min-resolution: 192dpi),
-//     (min-resolution: 2dppx) {
-//     background-image: linear-gradient(
-//         to right,
-//         rgba(0, 0, 0, 0.56),
-//         rgba(0, 0, 0, 0.56)
-//       ),
-//       url(../images/header_mob@2x-min.jpg);
-//   }
-
-//   @media screen and (min-width: $tablet) {
-//     background-image: linear-gradient(
-//         to right,
-//         rgba(0, 0, 0, 0.56),
-//         rgba(0, 0, 0, 0.56)
-//       ),
-//       url(../images/heder_tab-min.jpg);
-//     @media (min-device-pixel-ratio: 2),
-//       (min-resolution: 192dpi),
-//       (min-resolution: 2dppx) {
-//       background-image: linear-gradient(
-//           to right,
-//           rgba(0, 0, 0, 0.56),
-//           rgba(0, 0, 0, 0.56)
-//         ),
-//         url(../images/heder_tab@2x-min.jpg);
-//     }
-//   }
-//   @media screen and (min-width: $desktop) {
-//     max-width: 1280px;
-//     background-image: linear-gradient(
-//         to right,
-//         rgba(0, 0, 0, 0.56),
-//         rgba(0, 0, 0, 0.56)
-//       ),
-//       url(../images/header-min.jpg);
-//     @media (min-device-pixel-ratio: 2),
-//       (min-resolution: 192dpi),
-//       (min-resolution: 2dppx) {
-//       background-image: linear-gradient(
-//           to right,
-//           rgba(0, 0, 0, 0.56),
-//           rgba(0, 0, 0, 0.56)
-//         ),
-//         url(../images/header@2x-min.jpg);
-//     }
-//   }
-// }
 .header {
   position: relative;
   height: 230px;
@@ -104,7 +43,7 @@
   }
 
   @include desktop {
-    max-width: 1600px;
+    // max-width: 1600px;
     height: 216px;
 
     background-image: linear-gradient(
@@ -134,7 +73,7 @@
 
 .logo {
   margin-top: 40px;
-  // margin-left: 20px;
+  margin-left: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,6 +86,12 @@
 
 .logo__text {
   display: none;
+  &:hover,
+  &:focus {
+    color: $sixth-text-color;
+  }
+  transition: $transition;
+
   @include tablet {
     display: inline-block;
     font-family: $main-font-family;
@@ -248,9 +193,10 @@
   color: $secondary-text-color;
 }
 
-// .header__container {
-//   height: 216px;
-// }
+.header__container {
+  height: 216px;
+  position: relative;
+}
 .input__search-btn {
   position: absolute;
   content: '';
@@ -295,31 +241,4 @@
   color: $line-color;
   display: flex;
   justify-content: center;
-}
-
-body.dark {
-  background-color: $fourth-text-color;
-}
-
-body.dark .toggle {
-  // background-color: #464646;
-  background-color: $fourth-text-color;
-}
-body.dark .modal-film {
-  background-color: $fourth-text-color;
-}
-
-.toggle i {
-  font-size: 22px;
-  color: #777;
-}
-
-body.dark .toggle i {
-  color: #ddd;
-}
-
-body.dark .footer {
-  // background-color: $fourth-text-color;
-  background-color: #443f3f;
-  color: $secondary-text-color;
 }
