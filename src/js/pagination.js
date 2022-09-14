@@ -1,5 +1,6 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+import 'tui-pagination/dist/tui-pagination.min.css';
+import '/src/sass/components/_pagination.scss';
 import refs from './refs';
 import NewApiServise from './api-servise';
 
@@ -49,14 +50,13 @@ function updatePagination(e) {
 // // pagination.on('afterMove', updatePaginationAfterSearch);
 // // pagination.off('afterMove', updatePaginationAfterSearch);
 
-
 pagination.off('afterMove', updatePaginationAfterSearch);
-  pagination.on('afterMove', updatePaginationAfterSearch);
+pagination.on('afterMove', updatePaginationAfterSearch);
 
- function updatePaginationAfterSearch(e) {
-        newsApiServise.setPage(e.page);
-   console.log(newsApiServise.page);
-   
+function updatePaginationAfterSearch(e) {
+  newsApiServise.setPage(e.page);
+  console.log(newsApiServise.page);
+
   newsApiServise
     .getSearchMovies()
     .then(data => {
@@ -71,7 +71,7 @@ pagination.off('afterMove', updatePaginationAfterSearch);
     left: 0,
     behavior: 'smooth',
   });
- };
+}
 
 // //стара функці
 // //   function updatePaginationAfterSearch(e) {
@@ -79,7 +79,7 @@ pagination.off('afterMove', updatePaginationAfterSearch);
 // //         console.log(currentPage);
 
 // // newsApiServise.getSearchMovies(currentPage).then(({results}) => {
-    
+
 // //     const MakeUp = createMovieCard(results);
 
 // //             refs.mainList.innerHTML = MakeUp;
