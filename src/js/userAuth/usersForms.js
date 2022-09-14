@@ -41,8 +41,20 @@ function onLogOut(){
 }
 
 refs.openAuth.addEventListener('click', openModalAuth)
+refs.backdropAuth.addEventListener('click', closeModalAuth)
+document.addEventListener('keydown', closeModalAuth);
+
+function closeModalAuth(event) {
+  if (event.code === 'Escape') {
+    refs.backdropAuth.classList.add('is-hidden')
+    refs.body.classList.remove('no-scroll');
+  } 
+}
+
 function openModalAuth() {
-  refs.backdropFooterEl.classList.toggle('is-hidden')
+  refs.backdropAuth.classList.remove('is-hidden')
+    refs.body.classList.add('no-scroll');
+
 }
 // const library =document.querySelector('#library')
 onAuthStateChanged(auth, user => {
@@ -73,7 +85,6 @@ onAuthStateChanged(auth, user => {
 refs.signInForm.addEventListener('submit', submitAuth)
 
 
-
 function submitAuth(e){
 e.preventDefault()
     const user = auth.currentUser;
@@ -94,12 +105,16 @@ signInWithEmailAndPassword(auth, userData.email, userData.pass)
 
         refs.library.classList.remove('hidden-item');
         // refs.backdropFooterEl.classList.add('is-hidden')
+        userData.email.value = ''
+        userData.pass.value = ''
+        
         alert(`User ${user.displayName} signed in`);
         location.reload();
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorCode, errorMessage)
       });
 
 // const user = new User();
@@ -140,22 +155,30 @@ function submitRegister(e) {
 
 createUserWithEmailAndPassword(auth, userData.email, userData.pass)
       .then(userCredential => {
-        // const user = userCredential.user;
+        const user = userCredential.user;
 
-        // set(ref(db, 'users/' + user.uid + '/auth/'), this.userData);
+        set(ref(db, 'users/' + user.uid + '/auth/'), userData);
 
-        // updateProfile(auth.currentUser, {
-        //   displayName: `${userData.name}`,
-        // });
+        updateProfile(auth.currentUser, {
+          displayName: `${userData.name}`,
+        });
 
         alert(`User ${userData.name} created`);
 
-        // signOut(auth).then(() => {
-        //   refs.userLibrary.classList.add('hidden-tab');
-        // });
+        signOut(auth).then(() => {
+          refs.library.classList.add('hidden-item');
+        });
+          userData.name.value = ''
+        userData.pass.value = ''
+          userData.email.value = ''
+              location.reload();
+
+        
       })
-      .catch(error => {
-        alert(error.code);
+  .catch(error => {
+                const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorCode, errorMessage);
       });
 
 // const user = new User(userData);
@@ -176,7 +199,8 @@ createUserWithEmailAndPassword(auth, userData.email, userData.pass)
 //////////////////////////////////////
 
 
-
+refs.toLogInTab.addEventListener('click',toLogInLink)
+refs.toSignUpTab.addEventListener('click', toSignUpLink)
 refs.toLogIn.addEventListener('click',toLogInLink)
 refs.toSignUp.addEventListener('click', toSignUpLink)
 
