@@ -1,7 +1,6 @@
 import refs from './refs';
 import { save, load, remove } from './storageServise';
 import NewApiServise from './api-servise';
-// import { filmData } from './movieModal';
 
 const newsApiServise = new NewApiServise();
 const KEYWATCH = 'watched';
@@ -19,26 +18,29 @@ function onModalClick(e) {
     refs.modalFilmInfoRef.addEventListener('click', onQueueBtnClick);
   }
 }
-const filmData = [];
+
+let filmData = {};
 
 function onTakeId(id) {
   newsApiServise.getMoviesByID(id).then(data => {
-    filmData.push(data);
-    console.log('onmodalclick', filmData);
+    filmData = data;
   });
 }
 
 function onWatchedBtnClick(e) {
   if (e.target.className === 'modal-btn modal-film_btn-watched') {
-    savedCheck(filmData, KEYWATCH);
-    console.log('click on button ', filmData);
+    const filmArr = [];
+
+    filmArr.push(filmData);
+    savedCheck(filmArr, KEYWATCH);
   }
 }
 
 function onQueueBtnClick(e) {
   if (e.target.className === 'modal-btn modal-film_btn-queue') {
-    savedCheck(filmData, KEYQUEUE);
-    console.log(filmData);
+    const filmArr = [];
+    filmArr.push(filmData);
+    savedCheck(filmArr, KEYQUEUE);
   }
 }
 
@@ -48,7 +50,6 @@ function savedCheck(film, key) {
   if (load(key)) {
     const savedFilmId = load(key);
     let saveToNew = savedFilmId.map(e => e.id);
-    console.log('this code');
     savedFilmId.push(...film);
     fullFilm = [...new Set([...filmId, ...saveToNew])];
     film.push(...savedFilmId);
