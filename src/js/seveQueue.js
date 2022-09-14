@@ -3,7 +3,7 @@ import NewApiServise from './api-servise';
 import { save, load, remove } from './storageServise';
 
 import { filmId, filmData } from './movieModal';
-
+const key = 'watched';
 refs.mainList.addEventListener('click', onModalClick); // слухаєм клік по списку фільмів
 
 function onModalClick(e) {
@@ -18,36 +18,31 @@ function onModalClick(e) {
 
 function onWatchedBtnClick(e) {
   if (e.target.className === 'modal-btn modal-film_btn-watched') {
-    let watchedFilms = load('watched');
-    let numFilmId = Number(filmId);
-
-    if (watchedFilms === null) {
-      localStorage.setItem('watched', JSON.stringify(filmData));
-      watchedFilms = filmData;
-      return console.log(watchedFilms);
-    }
-    checkByID(watchedFilms, numFilmId);
+    controlReapet(filmData, key);
   }
 }
 
-function checkByID(data, id) {
-  let objID = 0;
-  data.filter(eleme => {
-    return (objID = eleme.id);
-  });
-  console.log('objID', objID);
-  console.log(id);
-  if (objID !== id) {
-    console.log('new film');
-    console.log(data);
+function controlReapet(film, key) {
+  let filmid = film.map(e => e.id);
+
+  const filterfilm = [...new Set(filmid)];
+  let uniqFilm = [];
+
+  for (let i = 0; i < filterfilm.length; i += 1) {
+    let uniqFilmId = filterfilm[i];
+    let searchUniqFilm = film.find(option => option.id === uniqFilmId);
+    uniqFilm.push(searchUniqFilm);
   }
+  save(key, uniqFilm);
 }
-// function onQueueBtnClick(e) {
-//   if (e.target.className === 'modal-btn modal-film_btn-queue') {
-//     console.log('click queue');
-//     console.log('queue', filmData.id);
-//   }
+
+// function onWatchedSavedCheck() {
+//   const savedFilm = [...load(key)];
+//   let savedFilmID = savedFilm.map(e => e.id);
+//   console.log('savedfilm', savedFilmID);
 // }
+
+// onWatchedSavedCheck();
 
 // function inList(id, list) {
 //   let arrList = [];
