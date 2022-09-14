@@ -68,3 +68,41 @@
   margin-right: 8px;
   margin-left: 8px;
 }
+
+body.dark .modal__btn-close {
+  border-radius: 50%;
+}
+body.dark .tui-page-btn {
+  color: $secondary-text-color;
+}
+body.dark .tui-ico-next {
+  color: #fff;
+}
+body.dark {
+  background-color: $fourth-text-color;
+}
+
+body.dark .toggle {
+  background-color: $fourth-text-color;
+}
+body.dark .modal-film {
+  background-color: $fourth-text-color;
+}
+
+body.dark .toggle i {
+  color: #ddd;
+}
+
+body.dark .footer {
+  background-color: #443f3f;
+  color: $secondary-text-color;
+}
+body.dark p {
+  color: $secondary-text-color;
+}
+body.dark .footer__link {
+  color: $trird-text-color;
+}
+body.dark .movieCard__title {
+  color: $secondary-text-color;
+}
