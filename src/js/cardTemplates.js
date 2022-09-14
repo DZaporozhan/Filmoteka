@@ -1,6 +1,6 @@
 // import { retrieveGenreList } from './retrieveGenreList';
 // import NewApiServise from './api-servise';
-// import refs from './refs';
+import refs from './refs';
 import axios from 'axios';
 
 const KEY = `api_key=6fe1e9d5fbaeb01db6cc1b91ad7172fe`;
@@ -34,6 +34,14 @@ function generatePosterImgLink(poster_path) {
   return `${basePosterUrl}${fileSize}${poster_path}`;
 }
 
+function generateGenreList(ids) {
+  let genreNames = ids.map(id => genreList[id]);
+  if (genreNames.length > 2) {
+    return `${genreNames[0]}, ${genreNames[1]}, Other`;
+  }
+  return genreNames.join(', ');
+}
+
 async function createMovieCard(filmInfo) {
   await retrieveGenreList();
   return filmInfo
@@ -55,9 +63,9 @@ async function createMovieCard(filmInfo) {
       </div>
       <div class="movieCard__text">
         <h2 class="movieCard__title">${title.toUpperCase()}</h2>
-        <p class="movieCard__info">${genre_ids
-          .map(id => genreList[id])
-          .join(', ')} | ${new Date(release_date).getFullYear()}
+        <p class="movieCard__info">${generateGenreList(genre_ids)} | ${new Date(
+        release_date
+      ).getFullYear()}
           <span class="movieCard__rate">${vote_average.toFixed(1)}</span></p>
       </div>
       </li>
@@ -65,5 +73,15 @@ async function createMovieCard(filmInfo) {
     )
     .join('');
 }
+
+// function rateOn() {
+//   refs.rate.classList.remove('visually-hidden');
+// }
+
+// function rateOff() {
+//   refs.rate.classList.add('visually-hidden');
+// }
+
+// refs.rate = document.querySelector('.movieCard__rate');
 
 export { createMovieCard };
