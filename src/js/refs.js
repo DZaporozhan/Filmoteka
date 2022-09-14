@@ -10,7 +10,7 @@ const refs = {
   body: document.querySelector('body'),
 
   openAuth: document.querySelector('.open-auth'),
-  // backdrop: document.querySelector('.backdrop'),
+  backdropAuth: document.querySelector('.backdrop-auth'),
   logOut: document.querySelector('.exit'),
   library: document.querySelector('#library'),
 
@@ -23,5 +23,7 @@ const refs = {
   toggle: document.querySelector('#theme-switch-toggle'),
   modalQueueBtn: document.querySelector('.modal-film_btn-queue'),
   modalWatchedBtn: document.querySelector('.modal-film_btn-watched'),
+  toSignUpTab:document.querySelector('#to-signup-tab'),
+  toLogInTab:document.querySelector('#to-login-tab'),
 };
 export default refs;
