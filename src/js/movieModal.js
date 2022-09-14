@@ -5,7 +5,7 @@ import imgPlaceholder from '/src/images/movie-time.jpg';
 
 refs.mainList.addEventListener('click', onMovieCLick);
 
-export function onMovieCLick(event) {
+function onMovieCLick(event) {
   refs.modalFilmInfoRef.innerHTML = '';
   const isCard = event.target.closest('.movieCard');
   if (!isCard) {
@@ -24,12 +24,12 @@ export function onMovieCLick(event) {
 const newsApiServise = new NewApiServise();
 
 const filmData = []; // стоврив пустий об'єкт для данних про фільм
-let filmId = 0; // записав початуовий ід.
+// let filmId = 0; // записав початуовий ід.
 
 export function moviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => {
     createModalFilmInfoMarkup(data);
-    onMoviesInfo(data); // прокидую в функцію данні про фільм
+    filmData.push(data);
   });
 }
 
@@ -163,8 +163,4 @@ function onCloseTrailer() {
   watchTrailerLightbox.remove();
 }
 
-export function onMoviesInfo(data) {
-  filmData.push(data); // записую об'єкт з данніми в пустий масив
-}
-
-export { movieId, filmData }; // єкспортую потрібні данні для lokal storage
+export { filmData }; // єкспортую потрібні данні для lokal storage
