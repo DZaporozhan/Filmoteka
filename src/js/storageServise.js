@@ -11,7 +11,7 @@ const load = key => {
   try {
     let serializedState = localStorage.getItem(key);
 
-    return (serializedState = JSON.parse(serializedState) || undefined);
+    return (serializedState = JSON.parse(serializedState) || []);
   } catch (error) {
     console.error('Get state error: ', error);
   }
