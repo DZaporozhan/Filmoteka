@@ -1,7 +1,7 @@
-// import { retrieveGenreList } from './retrieveGenreList';
 // import NewApiServise from './api-servise';
 import refs from './refs';
 import axios from 'axios';
+import { save, load } from './storageServise';
 
 const KEY = `api_key=6fe1e9d5fbaeb01db6cc1b91ad7172fe`;
 const basePosterUrl = 'https://image.tmdb.org/t/p/';
@@ -14,7 +14,15 @@ const fileSize = `w500`;
 //   mobile: 'w342',
 //   main: 'w500',
 // };
-const genreList = {};
+let genreList = {};
+const GENRE_LIST_KEY = 'genreList';
+
+function generatePosterImgLink(poster_path) {
+  if (poster_path === null) {
+    return noPosterImg;
+  }
+  return `${basePosterUrl}${fileSize}${poster_path}`;
+}
 
 async function retrieveGenreList() {
   try {
@@ -27,14 +35,10 @@ async function retrieveGenreList() {
   }
 }
 
-function generatePosterImgLink(poster_path) {
-  if (poster_path === null) {
-    return noPosterImg;
-  }
-  return `${basePosterUrl}${fileSize}${poster_path}`;
-}
-
 function generateGenreList(ids) {
+  if (localStorage.key === GENRE_LIST_KEY) {
+    return (genreList = load(GENRE_LIST_KEY));
+  }
   let genreNames = ids.map(id => genreList[id]);
   if (genreNames.length > 2) {
     return `${genreNames[0]}, ${genreNames[1]}, Other`;
@@ -42,8 +46,16 @@ function generateGenreList(ids) {
   return genreNames.join(', ');
 }
 
-async function createMovieCard(filmInfo) {
+async function setGenreListToLocalStorage() {
+  if (localStorage.key === GENRE_LIST_KEY) {
+    return;
+  }
   await retrieveGenreList();
+  save(GENRE_LIST_KEY, genreList);
+}
+
+async function createMovieCard(filmInfo) {
+  await setGenreListToLocalStorage();
   return filmInfo
     .map(
       ({
@@ -75,13 +87,13 @@ async function createMovieCard(filmInfo) {
 }
 
 // function rateOn() {
-//   refs.rate.classList.remove('visually-hidden');
+//   refs.movieRate.classList.remove('visually-hidden');
 // }
 
 // function rateOff() {
-//   refs.rate.classList.add('visually-hidden');
+//   refs.movieRate.classList.add('visually-hidden');
 // }
 
-// refs.rate = document.querySelector('.movieCard__rate');
+// refs.movieRate = document.querySelector('.movieCard__rate');
 
 export { createMovieCard };
