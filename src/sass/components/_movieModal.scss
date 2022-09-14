@@ -13,7 +13,6 @@
 
 .modal-film {
   width: 240px;
-  height: 852px;
   background-color: $main-bgcolor;
   padding: 48px 20px 40px;
   font-family: Roboto, sans-serif;
@@ -25,16 +24,13 @@
   @include tablet {
     display: flex;
     width: 597px;
-    height: 475px;
-    top: 50%;
+    top: 0%;
     left: 50%;
-    transform: translate(-50%, -50%);
     padding: 39px 71px 38px 36px;
   }
 
   @include desktop-modal {
     width: 782px;
-    height: 478px;
     padding: 40px 12px 40px 12px;
     top: 50%;
     left: 50%;
