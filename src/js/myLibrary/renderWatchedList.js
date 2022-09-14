@@ -1,6 +1,6 @@
-import { createMovieCard } from '../cardTemplates';
+import { createMovieCardFromLocalStorage } from '../cardTemplates';
 import refs from '../refs';
-import { save, load, remove } from './storageServise';
+import { save, load, remove } from '../storageServise';
 
 const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
@@ -8,12 +8,15 @@ const QUEUE_KEY = 'queue';
 const watchedRef = document.querySelector('[data-action="watched"]');
 
 async function renderWatchedList() {
-  refs.mainList.innerHTML = '';
-
-  const movieData = await load(WATCHED_KEY);
-  console.log(movieData);
-  const list = createMovieCard(movieData);
-  refs.mainList.insertAdjacentHTML('beforeend', list);
+  try {
+    refs.mainList.innerHTML = '';
+    const movieData = await load(WATCHED_KEY);
+    console.log(movieData);
+    const list = await createMovieCardFromLocalStorage(movieData);
+    refs.mainList.insertAdjacentHTML('beforeend', list);
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 watchedRef.addEventListener('click', renderWatchedList);
