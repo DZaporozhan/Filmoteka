@@ -1,41 +1,44 @@
 <header class="header-mylibrary">
   <div class="container">
-    <div class="header-mylibrary__wrapper">
+    <div class="header__container">
+      <label class="form-switch">
+        <input type="checkbox" id="theme-switch-toggle">
+        <i></i>
 
-      <a href="./index.html">
+        <svg class="theme-switch__icon" aria-label="moon">
+          <use href="./images/symbol-defs.svg#moon"></use>
+        </svg>
+      </label>
+      <div class="header-mylibrary__wrapper">
 
-        <div class="header__logo">
-          <img class="header__logo--icon" src="/src/images/logo.png" alt="" width="24" height="24" />
-        </div>
-        <span class="logo-mylibrary__text">Filmoteka</span>
-      </a>
+        <a href="./index.html">
 
-      <nav class="nav-mylibrary">
-        <ul class="nav-mylibrary__list">
-          <li class="nav-mylibrary__item">
-            <a class="nav-mylibrary__link" href="index.html"> home </a>
-          </li>
-          <li class="nav-mylibrary__item active">
-            <a class="nav-mylibrary__link" href="./library.html">
-              my library
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="button-mylibrary__wrap">
-      <button class="button" type="button" data-action="watched">
-        Watched
-      </button>
-      <button class="button" type="button" data-action="queue">queue</button>
+          <div class="header__logo">
+            <img class="header__logo--icon" src="/src/images/logo.png" alt="" width="24" height="24" />
+          </div>
+          <span class="logo-mylibrary__text">Filmoteka</span>
+        </a>
+
+        <nav class="nav-mylibrary">
+          <ul class="nav-mylibrary__list">
+            <li class="nav-mylibrary__item">
+              <a class="nav-mylibrary__link" href="index.html"> home </a>
+            </li>
+            <li class="nav-mylibrary__item active">
+              <a class="nav-mylibrary__link" href="./library.html">
+                my library
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="button-mylibrary__wrap">
+        <button class="button" type="button" data-action="watched">
+          Watched
+        </button>
+        <button class="button" type="button" data-action="queue">queue</button>
+      </div>
     </div>
   </div>
-  <label class="form-switch">
-    <input type="checkbox" id="theme-switch-toggle">
-    <i></i>
 
-    <svg class="theme-switch__icon" aria-label="moon">
-      <use href="./images/symbol-defs.svg#moon"></use>
-    </svg>
-  </label>
 </header>
