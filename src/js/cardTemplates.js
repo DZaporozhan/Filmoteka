@@ -1,4 +1,3 @@
-// import NewApiServise from './api-servise';
 import refs from './refs';
 import axios from 'axios';
 import { save, load } from './storageServise';
@@ -53,8 +52,10 @@ async function setGenreListToLocalStorage() {
   if (localStorage.key === GENRE_LIST_KEY) {
     return;
   }
+  onSpinnerEnabled();
   await retrieveGenreList();
   save(GENRE_LIST_KEY, genreList);
+  onSpinnerDisabled();
 }
 
 async function createMovieCard(filmInfo) {
