@@ -104,7 +104,16 @@ function createModalFilmMarkup({
   <h3 class="modal-film__about">About</h3>
   <p class="modal-film__abot-text">${overview}
   </p>
-  
+  <ul class="modal-film__container-btn">
+    <li>
+
+      <button class="modal-btn modal-film_btn-watched" type="button">add to watched</button>
+    </li>
+    <li>
+      <button class="modal-btn modal-film_btn-queue" type="button">add to queue</button>
+
+    </li>
+  </ul>
   </div>`;
 }
 
