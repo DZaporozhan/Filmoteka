@@ -7,10 +7,9 @@
   align-items: center;
   justify-content: center;
 }
-
 .auth {
   display: flex;
-
+  z-index: 100;
   opacity: 1;
   transform: scale(1);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -129,6 +128,9 @@
   }
 }
 .auth-text.mob {
+  @media screen and(max-width:767px) {
+    margin-bottom: 40px;
+  }
   @include tablet {
     display: none;
   }
@@ -210,6 +212,8 @@
 }
 
 .auth-input {
+  background-color: #6e6c6c6c;
+  border-radius: 5px;
   border: none;
   border-bottom: 1px solid #ffffff;
   width: 100%;
@@ -221,7 +225,7 @@
   letter-spacing: 0.02em;
 
   color: #ffffff;
-  background-color: transparent;
+  // background-color: transparent;
   margin-bottom: 30px;
   @include tablet {
     display: flex;
@@ -231,6 +235,7 @@
   @include desktop {
     width: 467px;
     margin-bottom: 60px;
+    font-size: 18px;
   }
 }
 
@@ -249,7 +254,7 @@
   filter: drop-shadow(2px 3px 9px rgba(0, 0, 0, 0.25));
   border-radius: 5px;
   @media screen and(max-width:767px) {
-    margin-top: 130px;
+    margin-top: 70px;
   }
   @include tablet {
     font-size: 14px;
@@ -279,6 +284,8 @@
   }
 }
 .auth-link {
+  background-color: transparent;
+  border: none;
   font-weight: 600;
   font-size: 11px;
   line-height: 24px;
