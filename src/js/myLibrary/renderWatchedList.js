@@ -2,7 +2,7 @@ import { createMovieCardFromLocalStorage } from '../cardTemplates';
 import refs from '../refs';
 import { load } from '../storageServise';
 import { onSpinnerDisabled, onSpinnerEnabled } from '../spinner';
-import { onPageQueue } from './settings';
+import onPageQueue from './settings';
 import throttle from 'lodash.throttle';
 
 const WATCHED_KEY = 'watched';
@@ -26,7 +26,7 @@ let movieData = [];
 
 async function renderWatchedList() {
   try {
-    onPageQueue = false;
+    onPageQueue.booleinChange(false);
     refs.mainList.innerHTML = '';
     pagination.refresh();
     onSpinnerEnabled();
@@ -46,7 +46,7 @@ watchedRef.addEventListener('click', renderWatchedList);
 window.addEventListener(
   'scroll',
   throttle(() => {
-    if (onPageQueue) return;
+    if (onPageQueue.get()) return;
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (clientHeight + scrollTop >= scrollHeight) {
       const nextRenderList = movieData.slice(pagination.start, pagination.end);
