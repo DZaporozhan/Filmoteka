@@ -8,7 +8,6 @@ const KEYQUEUE = 'queue';
 
 refs.mainList.addEventListener('click', onModalClick); // слухаєм клік по списку фільмів
 
-refs.mainList.addEventListener('click', onModalClick); // слухаєм клік по списку фільмів
 function onModalClick(e) {
   const modalEl = e.target.nodeName; // знаходжу на який елемент клікнули (нас цікавить img і p бо при клікі по ним відкривається модалка)
   const isCard = e.target.closest('.movieCard');
@@ -17,21 +16,23 @@ function onModalClick(e) {
   if (modalEl === 'IMG' || modalEl === 'P') {
     refs.modalFilmInfoRef.addEventListener('click', onWatchedBtnClick);
     refs.modalFilmInfoRef.addEventListener('click', onQueueBtnClick);
-
   }
+
+  setTimeout(() => {
+    onBtnChangeText(movieId);
+  }, 500);
 }
 
 let filmData = {};
 
-function onTakeId(id) {
-  newsApiServise.getMoviesByID(id).then(data => {
+async function onTakeId(id) {
+  await newsApiServise.getMoviesByID(id).then(data => {
     filmData = data;
   });
 }
 
 function onWatchedBtnClick(e) {
   if (e.target.className === 'modal-btn modal-film_btn-watched') {
-
     const filmArr = [];
 
     filmArr.push(filmData);
@@ -69,4 +70,29 @@ function controlReapet(fullFilm, film, key) {
     uniqFilm.push(searchUniqFilm);
   }
   save(key, uniqFilm);
+}
+
+function onBtnChangeText(modalId) {
+  const watcnBtn = document.querySelector('.modal-film_btn-watched');
+  const queueBtn = document.querySelector('.modal-film_btn-queue');
+
+  let storageWatched = load(KEYWATCH);
+  let storageQueue = load(KEYQUEUE);
+
+  let inWatchedFindedFilm =
+    storageWatched.find(film => film.id === modalId) || null;
+  let inQueueFindedFilm =
+    storageQueue.find(film => film.id === modalId) || null;
+
+  if (inWatchedFindedFilm === null) {
+    watcnBtn.textContent = 'add to watched';
+  } else if (inWatchedFindedFilm.id === modalId) {
+    watcnBtn.textContent = 'remove from watched';
+  }
+
+  if (inQueueFindedFilm === null) {
+    queueBtn.textContent = 'add to queue';
+  } else if (inQueueFindedFilm.id === modalId) {
+    queueBtn.textContent = 'remove from queue';
+  }
 }
