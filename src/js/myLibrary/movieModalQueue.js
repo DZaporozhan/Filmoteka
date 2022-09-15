@@ -17,13 +17,10 @@ async function onMovieCLick(e) {
       return;
     }
     const filmId = isCard.getAttribute('data');
-    console.log(Number(filmId));
 
     const movieData = await load(QUEUE_KEY);
-    console.log(load(QUEUE_KEY));
 
     const movieId = movieData.find(movie => movie.id === Number(filmId));
-    console.log(movieId);
     if (movieId) {
       openModal();
     }

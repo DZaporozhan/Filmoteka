@@ -1,5 +1,5 @@
 const movieTrailer = require('movie-trailer');
-import * as basicLightbox from 'basiclightbox'
+import * as basicLightbox from 'basiclightbox';
 
 import NewApiServise from './api-servise';
 
@@ -19,7 +19,7 @@ export default class watchTrailer {
       api_key: KEY,
       trailerId: this.trailerId,
     });
-    
+
     if (queryId !== null) {
       return queryId;
     }
@@ -31,11 +31,9 @@ export default class watchTrailer {
     } else {
       // notifications.showNotFound();
       const trailerBtn = document.querySelector('.js-trailer-btn');
-      console.log(trailerBtn);
       trailerBtn.textContent = 'Sorry, trailer is not found';
     }
   }
-    
 
   lightboxForTrailer(markup) {
     return basicLightbox.create(markup).show();
@@ -44,5 +42,4 @@ export default class watchTrailer {
   showTrailer() {
     this.fetchTrailer().then(this.player).then(this.lightboxForTrailer);
   }
-
 }
