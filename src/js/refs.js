@@ -23,8 +23,9 @@ const refs = {
   toggle: document.querySelector('#theme-switch-toggle'),
   modalQueueBtn: document.querySelector('.modal-film_btn-queue'),
   modalWatchedBtn: document.querySelector('.modal-film_btn-watched'),
-  toSignUpTab:document.querySelector('#to-signup-tab'),
+  toSignUpTab: document.querySelector('#to-signup-tab'),
   toLogInTab: document.querySelector('#to-login-tab'),
-  formWrap: document.querySelector('.form-wrap')
+  formWrap: document.querySelector('.form-wrap'),
+  searchErrorImg: document.querySelector('.search-error-img-wrapper'),
 };
 export default refs;
