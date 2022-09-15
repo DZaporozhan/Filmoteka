@@ -163,16 +163,16 @@ refs.toSignUpTab.addEventListener('click', toSignUpLink);
 refs.toLogIn.addEventListener('click', toLogInLink);
 refs.toSignUp.addEventListener('click', toSignUpLink);
 
-function toLogInLink(e) {
-  e.preventDefault();
-  refs.modalSignUp.classList.add('hidden-item');
+// function toLogInLink(e) {
+//   e.preventDefault();
+//   refs.modalSignUp.classList.add('hidden-item');
 
-  refs.modalSignIn.classList.remove('hidden-item');
-}
+//   refs.modalSignIn.classList.remove('hidden-item');
+// }
 
-function toSignUpLink(e) {
-  e.preventDefault();
-  refs.modalSignUp.classList.remove('hidden-item');
+// function toSignUpLink(e) {
+//   e.preventDefault();
+//   refs.modalSignUp.classList.remove('hidden-item');
 
-  refs.modalSignIn.classList.add('hidden-item');
-}
+//   refs.modalSignIn.classList.add('hidden-item');
+// }
