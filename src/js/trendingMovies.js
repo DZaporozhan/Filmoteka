@@ -24,6 +24,7 @@ function trendingMovies(currentPage) {
   newsApiServise
     .getTrendingMovies()
     .then(data => {
+      refs.searchErrorImg.classList.add('visually-hidden');
       const movieCard = createMovieCard(data.results);
       pagination.reset(data.total_results);
       return movieCard;

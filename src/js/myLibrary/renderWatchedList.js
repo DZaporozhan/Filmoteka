@@ -9,6 +9,7 @@ const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
 
 const watchedRef = document.querySelector('[data-action="watched"]');
+const imgRef = document.querySelector('.library-img-wrapper');
 
 const pagination = {
   start: 0,
@@ -32,6 +33,13 @@ async function renderWatchedList() {
     onSpinnerEnabled();
     movieData = await load(WATCHED_KEY);
     onSpinnerDisabled();
+
+    if (movieData.length === 0) {
+      imgRef.classList.remove('visually-hidden');
+      return;
+    }
+
+    imgRef.classList.add('visually-hidden');
     const nextRenderList = movieData.slice(pagination.start, pagination.end);
     const list = createMovieCardFromLocalStorage(nextRenderList);
     pagination.rendered();

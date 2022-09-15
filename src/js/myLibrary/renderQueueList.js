@@ -8,6 +8,7 @@ import onPageQueue from './settings';
 const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
 const queueRef = document.querySelector('[data-action="queue"]');
+const imgRef = document.querySelector('.library-img-wrapper');
 
 const pagination = {
   start: 0,
@@ -32,6 +33,13 @@ async function renderQueueList() {
     onSpinnerEnabled();
     movieData = await load(QUEUE_KEY);
     onSpinnerDisabled();
+
+    if (movieData.length === 0) {
+      imgRef.classList.remove('visually-hidden');
+      return;
+    }
+
+    imgRef.classList.add('visually-hidden');
     const nextRenderList = movieData.slice(pagination.start, pagination.end);
     const list = createMovieCardFromLocalStorage(nextRenderList);
     pagination.rendered();
