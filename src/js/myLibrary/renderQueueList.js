@@ -3,7 +3,7 @@ import refs from '../refs';
 import { load } from '../storageServise';
 import { onSpinnerDisabled, onSpinnerEnabled } from '../spinner';
 import throttle from 'lodash.throttle';
-import { onPageQueue } from './settings';
+import onPageQueue from './settings';
 
 const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
@@ -26,7 +26,7 @@ let movieData = [];
 
 async function renderQueueList() {
   try {
-    onPageQueue = true;
+    onPageQueue.booleinChange(true);
     refs.mainList.innerHTML = '';
     pagination.refresh();
     onSpinnerEnabled();
@@ -46,6 +46,7 @@ queueRef.addEventListener('click', renderQueueList);
 window.addEventListener(
   'scroll',
   throttle(() => {
+    if (!onPageQueue.get()) return;
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (clientHeight + scrollTop >= scrollHeight) {
       const nextRenderList = movieData.slice(pagination.start, pagination.end);
