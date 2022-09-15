@@ -24,6 +24,7 @@ const refs = {
   modalQueueBtn: document.querySelector('.modal-film_btn-queue'),
   modalWatchedBtn: document.querySelector('.modal-film_btn-watched'),
   toSignUpTab:document.querySelector('#to-signup-tab'),
-  toLogInTab:document.querySelector('#to-login-tab'),
+  toLogInTab: document.querySelector('#to-login-tab'),
+  formWrap: document.querySelector('.form-wrap')
 };
 export default refs;
