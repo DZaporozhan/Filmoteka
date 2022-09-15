@@ -5,14 +5,13 @@ import imgPlaceholder from '/src/images/movie-time.jpg';
 
 refs.mainList.addEventListener('click', onMovieCLick);
 
-export function onMovieCLick(event) {
+function onMovieCLick(event) {
   refs.modalFilmInfoRef.innerHTML = '';
   const isCard = event.target.closest('.movieCard');
   if (!isCard) {
     return;
   }
   const movieId = isCard.getAttribute('data');
-  console.log(movieId);
   openModal();
 
   moviesByID(movieId);
@@ -23,12 +22,12 @@ export function onMovieCLick(event) {
 
 const newsApiServise = new NewApiServise();
 
-const filmData = []; // стоврив пустий об'єкт для данних про фільм
-
 export function moviesByID(movieID) {
   newsApiServise.getMoviesByID(movieID).then(data => {
     createModalFilmInfoMarkup(data);
-    filmData.push(data); // прокидую в функцію данні про фільм
+
+    // filmData.push(data);
+
   });
 }
 
@@ -113,10 +112,12 @@ function createModalFilmInfoMarkup({
   </p>
   <ul class="modal-film__container-btn">
     <li>
-      <button class="modal-btn modal-film_btn-watched" type="click">add to watched</button>
+
+      <button class="modal-btn modal-film_btn-watched" type="button">add to watched</button>
     </li>
     <li>
-      <button class="modal-btn modal-film_btn-queue" type="click">add to queue</button>
+      <button class="modal-btn modal-film_btn-queue" type="button">add to queue</button>
+
     </li>
   </ul>
   </div>`;
