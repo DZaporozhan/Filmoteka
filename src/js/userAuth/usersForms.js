@@ -140,7 +140,7 @@ function submitRegister(e) {
       });
       
       alert(`User ${userData.name} created`);
-refs.signUpForm.addEventListener('submit', toLogInLink);
+      location.reload();
       signOut(auth).then(() => {
         refs.library.classList.add('hidden-item');
       });
