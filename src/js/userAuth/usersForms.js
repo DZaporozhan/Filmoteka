@@ -86,34 +86,33 @@ function submitAuth(e) {
     email: document.getElementById('auth-email').value,
     pass: document.getElementById('auth-password').value,
   };
-  function openModalAuth() {
-    refs.backdropAuth.classList.remove('is-hidden');
-    refs.body.classList.add('no-scroll');
 
-    if (!userData.email || !userData.pass) {
-      alert('Please enter your email and password');
-      return;
-    }
-    onSpinnerEnabled();
-    signInWithEmailAndPassword(auth, userData.email, userData.pass)
-      .then(userCredential => {
-        const user = userCredential.user;
+  refs.backdropAuth.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
 
-        refs.library.classList.remove('hidden-item');
-        onSpinnerDisabled();
-        // refs.backdropFooterEl.classList.add('is-hidden')
-        userData.email = '';
-        userData.pass = '';
-
-        alert(`User ${user.displayName} signed in`);
-        location.reload();
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorCode, errorMessage);
-      });
+  if (!userData.email || !userData.pass) {
+    alert('Please enter your email and password');
+    return;
   }
+
+  signInWithEmailAndPassword(auth, userData.email, userData.pass)
+    .then(userCredential => {
+      const user = userCredential.user;
+
+      refs.library.classList.remove('hidden-item');
+
+      // refs.backdropFooterEl.classList.add('is-hidden')
+      userData.email = '';
+      userData.pass = '';
+
+      alert(`User ${user.displayName} signed in`);
+      location.reload();
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorCode, errorMessage);
+    });
 }
 function submitRegister(e) {
   e.preventDefault();
@@ -122,7 +121,6 @@ function submitRegister(e) {
     displayName: `${userData.name}`,
   });
 
-  onSpinnerEnabled();
   createUserWithEmailAndPassword(auth, userData.email, userData.pass)
     .then(userCredential => {
       const user = userCredential.user;
@@ -134,7 +132,7 @@ function submitRegister(e) {
     });
 
   alert(`User ${userData.name} created`);
-  onSpinnerDisabled();
+
   signOut(auth).then(() => {
     refs.library.classList.add('hidden-item');
   });
@@ -155,24 +153,3 @@ function toSignUpLink(e) {
   refs.modalSignUp.classList.remove('hidden-item');
   refs.modalSignIn.classList.add('hidden-item');
 }
-
-//////////////////////////////////////
-
-refs.toLogInTab.addEventListener('click', toLogInLink);
-refs.toSignUpTab.addEventListener('click', toSignUpLink);
-refs.toLogIn.addEventListener('click', toLogInLink);
-refs.toSignUp.addEventListener('click', toSignUpLink);
-
-// function toLogInLink(e) {
-//   e.preventDefault();
-//   refs.modalSignUp.classList.add('hidden-item');
-
-//   refs.modalSignIn.classList.remove('hidden-item');
-// }
-
-// function toSignUpLink(e) {
-//   e.preventDefault();
-//   refs.modalSignUp.classList.remove('hidden-item');
-
-//   refs.modalSignIn.classList.add('hidden-item');
-// }
