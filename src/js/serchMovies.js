@@ -2,6 +2,7 @@ import NewApiServise from './api-servise';
 import { createMovieCard } from './cardTemplates';
 import refs from './refs';
 import Pagination from 'tui-pagination';
+import { onSpinnerDisabled, onSpinnerEnabled } from './spinner';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import '/src/sass/components/_pagination.scss';
 
@@ -31,7 +32,7 @@ function onSearch(e) {
   }
   const uri = keys.value;
   const encoded = encodeURI(uri);
-  console.log(encoded);
+  // console.log(encoded);
 
   newsApiServise.query = encoded;
 
@@ -39,6 +40,7 @@ function onSearch(e) {
 }
 
 function SearchMovies() {
+  onSpinnerEnabled();
   newsApiServise
     .getSearchMovies()
     .then(data => {
@@ -47,8 +49,10 @@ function SearchMovies() {
       return movieCard;
     })
     .then(data => {
+      onSpinnerDisabled();
       if (!data) {
         refs.warningOnSearch.textContent = `Sorry, there are no results found. Try searching for something else!`;
+        refs.mainList.innerHTML = '';
         refs.searchForm.reset();
       } else {
         refs.mainList.innerHTML = '';
@@ -62,8 +66,7 @@ function SearchMovies() {
 
 function updatePagination(e) {
   newsApiServise.setPage(e.page);
-  console.log(newsApiServise.page);
-  console.log(newsApiServise.query);
+  onSpinnerEnabled();
   newsApiServise
     .getSearchMovies()
     .then(data => {
@@ -71,6 +74,7 @@ function updatePagination(e) {
       return movieCard;
     })
     .then(data => {
+      onSpinnerDisabled();
       refs.mainList.innerHTML = data;
     });
   window.scrollTo({

@@ -2,6 +2,7 @@ import NewApiServise from './api-servise';
 import refs from './refs';
 import { createMovieCard } from './cardTemplates';
 import Pagination from 'tui-pagination';
+import { onSpinnerDisabled, onSpinnerEnabled } from './spinner';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import '/src/sass/components/_pagination.scss';
 
@@ -19,6 +20,7 @@ let currentPage = pagination.getCurrentPage();
 
 function trendingMovies(currentPage) {
   newsApiServise.setPage(currentPage);
+  onSpinnerEnabled();
   newsApiServise
     .getTrendingMovies()
     .then(data => {
@@ -27,6 +29,7 @@ function trendingMovies(currentPage) {
       return movieCard;
     })
     .then(data => {
+      onSpinnerDisabled();
       pagination.on('afterMove', updatePagination);
       refs.mainList.insertAdjacentHTML('beforeend', data);
     });
@@ -35,7 +38,7 @@ function trendingMovies(currentPage) {
 function updatePagination(e) {
   newsApiServise.setPage(e.page);
   currentPage = e.page;
-  console.log(newsApiServise.page);
+  onSpinnerEnabled();
   newsApiServise
     .getTrendingMovies()
     .then(data => {
@@ -43,6 +46,7 @@ function updatePagination(e) {
       return movieCard;
     })
     .then(data => {
+      onSpinnerDisabled();
       refs.mainList.innerHTML = data;
     });
   window.scrollTo({
