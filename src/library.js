@@ -6,3 +6,4 @@ import './js/myLibrary/movieModalWatched';
 import './js/myLibrary/movieModalQueue';
 import './js/refs';
 import './js/theme';
+import './js/scroll-up';

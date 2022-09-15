@@ -11,8 +11,8 @@ window.onscroll = function () {
 // When scrolling more than 2500px class .showBtn either add or removed, which either reveal button or removes it
 function onScrollFunction() {
   if (
-    document.body.scrollTop > 2500 ||
-    document.documentElement.scrollTop > 2500
+    document.body.scrollTop > 500 ||
+    document.documentElement.scrollTop > 500
   ) {
     scrollUpBtn.classList.add('showBtn');
   } else {
