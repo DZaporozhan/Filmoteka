@@ -116,30 +116,36 @@ function submitAuth(e) {
 }
 function submitRegister(e) {
   e.preventDefault();
-
-  updateProfile(auth.currentUser, {
-    displayName: `${userData.name}`,
-  });
-
+  const userData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('register-email').value,
+    pass: document.getElementById('register-password').value,
+  };
   createUserWithEmailAndPassword(auth, userData.email, userData.pass)
     .then(userCredential => {
       const user = userCredential.user;
+
+      set(ref(db, 'users/' + user.uid + '/auth/'), userData);
+
+      updateProfile(auth.currentUser, {
+        displayName: `${userData.name}`,
+      });
+
+      alert(`User ${userData.name} created`);
+
+      signOut(auth).then(() => {
+        refs.library.classList.add('hidden-item');
+      });
+      userData.name.value = '';
+      userData.pass.value = '';
+      userData.email.value = '';
+      location.reload();
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
       alert(errorCode, errorMessage);
     });
-
-  alert(`User ${userData.name} created`);
-
-  signOut(auth).then(() => {
-    refs.library.classList.add('hidden-item');
-  });
-  userData.name = '';
-  userData.pass = '';
-  userData.email = '';
-  location.reload();
 }
 
 function toLogInLink(e) {
