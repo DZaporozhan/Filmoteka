@@ -3,10 +3,6 @@ import { load } from '../storageServise';
 import imgPlaceholder from '/src/images/movie-time.jpg';
 
 const WATCHED_KEY = 'watched';
-const QUEUE_KEY = 'queue';
-
-// const
-const queueRef = document.querySelector('[data-action="queue"]');
 
 refs.mainList.addEventListener('click', onMovieCLick);
 
@@ -17,13 +13,11 @@ async function onMovieCLick(e) {
       return;
     }
     const filmId = isCard.getAttribute('data');
-    console.log(Number(filmId));
 
     const movieData = await load(WATCHED_KEY);
-    console.log(load(WATCHED_KEY));
 
     const movieId = movieData.find(movie => movie.id === Number(filmId));
-    console.log(movieId);
+
     if (movieId) {
       openModal();
     }
@@ -73,7 +67,7 @@ function createModalFilmMarkup({
         />
       </svg>
     </button>
-  <div div class="modal-film__img">
+  <div class="modal-film__img">
     <div class="modal-film__wrapper">
     <img
       src="${poster_path ? `${base_url}${size}${poster_path}` : imgPlaceholder}"
@@ -118,7 +112,6 @@ function createModalFilmMarkup({
 function onEscClose(event) {
   if (event.key === 'Escape') {
     closeModal();
-    // onCloseTrailer();
   }
 }
 
@@ -139,23 +132,3 @@ function closeModal() {
   document.removeEventListener('click', onClickClose);
   document.removeEventListener('keydown', onEscClose);
 }
-
-// function getMovieTrailerByIdName(e) {
-//   const id = e.target.dataset.id;
-//   const name = e.target.dataset.name;
-//   new watchTrailer(id, name).showTrailer();
-// }
-
-// function onCloseTrailer() {
-//   const watchTrailerLightbox = document.querySelector('.basicLightbox');
-//   watchTrailerLightbox.remove();
-// }
-
-// <div class='modal__trailer-wrapper'>
-//   <button class='modal__trailer-btn js-trailer-btn'
-//   type='button'
-//   data-id='${id}'
-//   data-name='${original_title}'>
-//   watch trailer
-//   </button>
-// </div>

@@ -27,7 +27,6 @@ export function moviesByID(movieID) {
     createModalFilmInfoMarkup(data);
 
     // filmData.push(data);
-
   });
 }
 
@@ -65,7 +64,7 @@ function createModalFilmInfoMarkup({
         />
       </svg>
     </button>
-  <div div class="modal-film__img">
+  <div class="modal-film__img">
     <div class="modal-film__wrapper">
     <img
       src="${poster_path ? `${base_url}${size}${poster_path}` : imgPlaceholder}"

@@ -20,12 +20,14 @@
   top: 0%;
   left: 50%;
   transform: translate(-50%);
+  box-sizing: revert;
 
   @include tablet {
     display: flex;
     width: 597px;
-    top: 0%;
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     padding: 39px 71px 38px 36px;
   }
 
@@ -141,6 +143,7 @@
   color: $trird-text-color;
   width: 71px;
   margin-right: 39px;
+  white-space: nowrap;
 
   @include desktop-modal {
     margin-right: 83px;
