@@ -7,6 +7,7 @@ import onPageQueue from './settings';
 
 const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
+
 const queueRef = document.querySelector('[data-action="queue"]');
 const imgRef = document.querySelector('.library-img-wrapper');
 
@@ -50,6 +51,7 @@ async function renderQueueList() {
 }
 
 queueRef.addEventListener('click', renderQueueList);
+queueRef.click();
 
 window.addEventListener(
   'scroll',
