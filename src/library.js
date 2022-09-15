@@ -4,6 +4,7 @@ import './js/myLibrary/renderWatchedList';
 import './js/myLibrary/renderQueueList';
 import './js/myLibrary/movieModalWatched';
 import './js/myLibrary/movieModalQueue';
+import './js/modalFooter';
 import './js/refs';
 import './js/theme';
 import './js/scroll-up';
