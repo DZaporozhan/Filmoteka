@@ -2,6 +2,8 @@ import { createMovieCardFromLocalStorage } from '../cardTemplates';
 import refs from '../refs';
 import { load } from '../storageServise';
 import { onSpinnerDisabled, onSpinnerEnabled } from '../spinner';
+import { onPageQueue } from './settings';
+import throttle from 'lodash.throttle';
 
 const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
@@ -24,12 +26,12 @@ let movieData = [];
 
 async function renderWatchedList() {
   try {
+    onPageQueue = false;
     refs.mainList.innerHTML = '';
     pagination.refresh();
     onSpinnerEnabled();
     movieData = await load(WATCHED_KEY);
     onSpinnerDisabled();
-    // console.log(movieData);
     const nextRenderList = movieData.slice(pagination.start, pagination.end);
     const list = createMovieCardFromLocalStorage(nextRenderList);
     pagination.rendered();
@@ -41,12 +43,16 @@ async function renderWatchedList() {
 
 watchedRef.addEventListener('click', renderWatchedList);
 
-window.addEventListener('scroll', () => {
-  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  if (clientHeight + scrollTop >= scrollHeight) {
-    const nextRenderList = movieData.slice(pagination.start, pagination.end);
-    pagination.rendered();
-    const list = createMovieCardFromLocalStorage(nextRenderList);
-    refs.mainList.insertAdjacentHTML('beforeend', list);
-  }
-});
+window.addEventListener(
+  'scroll',
+  throttle(() => {
+    if (onPageQueue) return;
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (clientHeight + scrollTop >= scrollHeight) {
+      const nextRenderList = movieData.slice(pagination.start, pagination.end);
+      pagination.rendered();
+      const list = createMovieCardFromLocalStorage(nextRenderList);
+      refs.mainList.insertAdjacentHTML('beforeend', list);
+    }
+  }, 300)
+);
