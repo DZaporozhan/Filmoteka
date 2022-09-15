@@ -2,10 +2,13 @@ import { createMovieCardFromLocalStorage } from '../cardTemplates';
 import refs from '../refs';
 import { load } from '../storageServise';
 import { onSpinnerDisabled, onSpinnerEnabled } from '../spinner';
+import throttle from 'lodash.throttle';
+import onPageQueue from './settings';
 
 const WATCHED_KEY = 'watched';
 const QUEUE_KEY = 'queue';
 const queueRef = document.querySelector('[data-action="queue"]');
+const imgRef = document.querySelector('.library-img-wrapper');
 
 const pagination = {
   start: 0,
@@ -24,12 +27,19 @@ let movieData = [];
 
 async function renderQueueList() {
   try {
+    onPageQueue.booleinChange(true);
     refs.mainList.innerHTML = '';
     pagination.refresh();
     onSpinnerEnabled();
     movieData = await load(QUEUE_KEY);
     onSpinnerDisabled();
-    // console.log(movieData);
+
+    if (movieData.length === 0) {
+      imgRef.classList.remove('visually-hidden');
+      return;
+    }
+
+    imgRef.classList.add('visually-hidden');
     const nextRenderList = movieData.slice(pagination.start, pagination.end);
     const list = createMovieCardFromLocalStorage(nextRenderList);
     pagination.rendered();
@@ -41,12 +51,16 @@ async function renderQueueList() {
 
 queueRef.addEventListener('click', renderQueueList);
 
-window.addEventListener('scroll', () => {
-  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  if (clientHeight + scrollTop >= scrollHeight) {
-    const nextRenderList = movieData.slice(pagination.start, pagination.end);
-    pagination.rendered();
-    const list = createMovieCardFromLocalStorage(nextRenderList);
-    refs.mainList.insertAdjacentHTML('beforeend', list);
-  }
-});
+window.addEventListener(
+  'scroll',
+  throttle(() => {
+    if (!onPageQueue.get()) return;
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (clientHeight + scrollTop >= scrollHeight) {
+      const nextRenderList = movieData.slice(pagination.start, pagination.end);
+      pagination.rendered();
+      const list = createMovieCardFromLocalStorage(nextRenderList);
+      refs.mainList.insertAdjacentHTML('beforeend', list);
+    }
+  }, 500)
+);

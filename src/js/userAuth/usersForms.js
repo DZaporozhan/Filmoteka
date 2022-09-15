@@ -45,23 +45,21 @@ function closeModalAuth(event) {
     event.target.type === 'email' ||
     event.target.type === 'password' ||
     event.target.type === 'text' ||
-    event.code === 'Enter'||
+    event.code === 'Enter' ||
     event.target === refs.modalSignIn ||
     event.target === refs.signInForm ||
     event.target === refs.modalSignUp ||
     event.target === refs.signUpForm ||
     event.target === refs.formWrap
   ) {
-    
     return;
-  }else if (event.code === 'Escape') {
+  } else if (event.code === 'Escape') {
     refs.backdropAuth.classList.add('is-hidden');
     refs.body.classList.remove('no-scroll');
   } else {
     refs.backdropAuth.classList.add('is-hidden');
     refs.body.classList.remove('no-scroll');
   }
-  // console.log(event.target)
 }
 
 function openModalAuth() {
@@ -126,9 +124,9 @@ function submitRegister(e) {
     email: document.getElementById('register-email').value,
     pass: document.getElementById('register-password').value,
   };
-  refs.modalSignIn.classList.remove('hidden-item')
-  
-  refs.modalSignUp.classList.add('hidden-item')
+  refs.modalSignIn.classList.remove('hidden-item');
+
+  refs.modalSignUp.classList.add('hidden-item');
   createUserWithEmailAndPassword(auth, userData.email, userData.pass)
     .then(userCredential => {
       const user = userCredential.user;
@@ -138,7 +136,7 @@ function submitRegister(e) {
       updateProfile(auth.currentUser, {
         displayName: `${userData.name}`,
       });
-      
+
       alert(`User ${userData.name} created`);
       location.reload();
       signOut(auth).then(() => {
@@ -147,8 +145,7 @@ function submitRegister(e) {
       userData.name = '';
       userData.pass = '';
       userData.email = '';
-            location.reload();
-
+      location.reload();
     })
     .catch(error => {
       const errorCode = error.code;

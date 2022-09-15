@@ -32,7 +32,6 @@ function onSearch(e) {
   }
   const uri = keys.value;
   const encoded = encodeURI(uri);
-  // console.log(encoded);
 
   newsApiServise.query = encoded;
 
@@ -44,6 +43,7 @@ function SearchMovies() {
   newsApiServise
     .getSearchMovies()
     .then(data => {
+      refs.searchErrorImg.classList.add('visually-hidden');
       const movieCard = createMovieCard(data.results);
       paginationSearch.reset(data.total_results);
       return movieCard;
@@ -53,6 +53,7 @@ function SearchMovies() {
       if (!data) {
         refs.warningOnSearch.textContent = `Sorry, there are no results found. Try searching for something else!`;
         refs.mainList.innerHTML = '';
+        refs.searchErrorImg.classList.remove('visually-hidden');
         refs.searchForm.reset();
       } else {
         refs.mainList.innerHTML = '';
