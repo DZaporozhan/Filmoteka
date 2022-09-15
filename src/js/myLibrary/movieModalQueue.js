@@ -17,7 +17,6 @@ async function onMovieCLick(e) {
     const movieData = await load(QUEUE_KEY);
 
     const movieId = movieData.find(movie => movie.id === Number(filmId));
-    console.log(movieId);
     if (movieId) {
       openModal();
     }
