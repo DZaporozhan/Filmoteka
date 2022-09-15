@@ -32,7 +32,6 @@ function onSearch(e) {
   }
   const uri = keys.value;
   const encoded = encodeURI(uri);
-  // console.log(encoded);
 
   newsApiServise.query = encoded;
 

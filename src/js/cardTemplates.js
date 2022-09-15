@@ -8,14 +8,8 @@ const basePosterUrl = 'https://image.tmdb.org/t/p/';
 const noPosterImg =
   'https://freedesignfile.com/upload/2014/07/Movie-time-design-elements-vector-backgrounds-01.jpg';
 const fileSize = `w500`;
-// const fileSizes = {
-//   original: 'w780',
-//   tablet: 'w500',
-//   mobile: 'w342',
-//   main: 'w500',
-// };
-let genreList = {};
 const GENRE_LIST_KEY = 'genreList';
+let genreList = {};
 
 function generatePosterImgLink(poster_path) {
   if (poster_path === null) {
